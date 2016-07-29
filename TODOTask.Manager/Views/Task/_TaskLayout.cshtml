@@ -1,0 +1,14 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@ViewBag.Title</h2>
+<div>
+    <ul>
+        <li>@Html.ActionLink(TODOTask.Manager.Utilities.Constants.GetText(TODOTask.Manager.Utilities.LableItem.Page_Index), nameof(TODOTask.Manager.Controllers.TaskController.Index))</li>
+        <li>@Html.ActionLink(TODOTask.Manager.Utilities.Constants.GetText(TODOTask.Manager.Utilities.LableItem.Page_List), nameof(TODOTask.Manager.Controllers.TaskController.List))</li>
+        <li>@Html.ActionLink(TODOTask.Manager.Utilities.Constants.GetText(TODOTask.Manager.Utilities.LableItem.Task_TODOList), nameof(TODOTask.Manager.Controllers.TaskController.TODOList))</li>
+        @*<li>@Html.ActionLink(TODOTask.Manager.Utilities.Constants.GetText(TODOTask.Manager.Utilities.LableItem.Page_Create), nameof(TODOTask.Manager.Controllers.TaskController.Create))</li>
+        <li>@Html.ActionLink(TODOTask.Manager.Utilities.Constants.GetText(TODOTask.Manager.Utilities.LableItem.Page_Edit), nameof(TODOTask.Manager.Controllers.TaskController.Edit))</li>*@
+    </ul>
+    @RenderBody()
+</div>

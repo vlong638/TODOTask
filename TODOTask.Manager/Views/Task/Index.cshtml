@@ -1,0 +1,19 @@
+﻿@model VL.Common.Protocol.IService.DependencyResult
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Task/_TaskLayout.cshtml";
+}
+<h2>Index</h2>
+<div>
+    <ul>
+        @if (Model.IsAllDependenciesAvailable)
+        {
+            <li>Task服务验证通过</li>
+        }
+        else
+        {
+            <li>Task服务验证未通过</li>
+        }
+    </ul>
+</div>
+

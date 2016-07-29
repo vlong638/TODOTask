@@ -1,0 +1,27 @@
+2016-07-12 11:08:20:---------------------服务的依赖项检测--开始---------------------
+2016-07-12 11:08:20:System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 VL.Common.Protocol.IService.ServiceContext.Init()
+   在 TODOTask.Runner.Program.InitServiceContext() 位置 C:\Users\dcw027\Documents\Visual Studio 2015\Projects\TODOTask\TODOTask.Runner\Program.cs:行号 29
+2016-07-12 11:08:42:---------------------服务的依赖项检测--开始---------------------
+2016-07-12 11:09:22:---------------------服务的依赖项检测--开始---------------------
+2016-07-12 11:09:22:单元<TODOTask>依赖检测未通过,错误详情:
+数据库连接失败,数据库配置名称:TODOTask
+错误详情System.NotImplementedException: 未配置有效的数据库类型
+   在 VL.Common.DAS.Utilities.DbConfigItem.GetDbSession()
+   在 VL.Common.Protocol.IService.ServiceContext.CheckAvailabilityOfDbSessionForService(DbConfigItem dbConfigItem)
+
+2016-07-12 11:09:22:---------------------服务的依赖项检测--结束---------------------
+2016-07-12 11:16:52:---------------------服务的依赖项检测--开始---------------------
+2016-07-12 11:16:52:单元<TODOTask>依赖检测未通过,错误详情:
+数据库连接失败,数据库配置名称:TODOTask
+错误详情System.NotImplementedException: 未配置有效的数据库类型
+   在 VL.Common.DAS.Utilities.DbConfigItem.GetDbSession()
+   在 VL.Common.Protocol.IService.ServiceContext.CheckAvailabilityOfDbSessionForService(DbConfigItem dbConfigItem)
+
+2016-07-12 11:16:52:---------------------服务的依赖项检测--结束---------------------
+2016-07-12 11:17:29:---------------------服务的依赖项检测--开始---------------------
+2016-07-12 11:17:33:单元<TODOTask>依赖检测通过
+2016-07-12 11:17:33:---------------------服务的依赖项检测--结束---------------------
+2016-07-12 11:24:52:---------------------服务的依赖项检测--开始---------------------
+2016-07-12 11:24:52:单元<TODOTask>依赖检测通过
+2016-07-12 11:24:52:---------------------服务的依赖项检测--结束---------------------

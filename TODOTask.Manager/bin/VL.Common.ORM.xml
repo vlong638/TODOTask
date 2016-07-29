@@ -1,0 +1,511 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VL.Common.ORM</name>
+    </assembly>
+    <members>
+        <member name="T:VL.Common.ORM.Objects.IPDMTBase">
+            <summary>
+            表基类 
+            它定义了复合PDM模型生成的表 
+            需有TableName,Properties
+            同时他定义了基于会话DbSession的操作基本规范
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Objects.IPDMTBase.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Objects.IPDMTBase.#ctor(System.Data.IDataReader)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="reader"></param>
+        </member>
+        <member name="M:VL.Common.ORM.Objects.IPDMTBase.Init(System.Data.IDataReader)">
+            <summary>
+            通过DataReader初始化数据
+            </summary>
+            <param name="reader"></param>
+        </member>
+        <member name="M:VL.Common.ORM.Objects.IPDMTBase.Init(System.Data.IDataReader,System.Collections.Generic.List{System.String})">
+            <summary>
+            通过DataReader初始化数据
+            </summary>
+        </member>
+        <member name="P:VL.Common.ORM.Objects.IPDMTBase.TableName">
+            <summary>
+            获取表名
+            </summary>
+        </member>
+        <member name="T:VL.Common.ORM.Objects.PDMDbProperty">
+            <summary>
+            由pdm解析的列字段
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Objects.PDMDbProperty.#ctor(System.String,System.String,System.String,System.Boolean,VL.Common.ORM.Objects.PDMDataType,System.Int32,System.Int32,System.Boolean,System.String)">
+            <summary>
+            PDM模型属性
+            </summary>
+            <param name="title"></param>
+            <param name="code"></param>
+            <param name="comment"></param>
+            <param name="isPrimaryKey"></param>
+            <param name="type"></param>
+            <param name="length"></param>
+            <param name="precision"></param>
+            <param name="nullable"></param>
+            <param name="defaultValue"></param>
+        </member>
+        <member name="T:VL.Common.ORM.Utilities.DbTranslateHelper">
+            <summary>
+            数据库兼容
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.DbTranslateHelper.GetDbParameter(VL.Common.DAS.Objects.DbSession,System.String,System.Object)">
+            <summary>
+            获取对应数据库的参数对象
+            </summary>
+            <param name="session"></param>
+            <param name="name"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.DbTranslateHelper.GetDbParameter(VL.Common.ORM.Objects.PDMDbProperty,VL.Common.DAS.Objects.DbSession,System.Object,System.String)">
+            <summary>
+            获取对应数据库的参数对象
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.DbTranslateHelper.ToQueryString(VL.Common.ORM.Utilities.QueryBuilders.OperatorType)">
+            <summary>
+            转译为对应数据库的查询语句
+            </summary>
+            <param name="operatorType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.DbTranslateHelper.ToSQLString(System.Collections.Generic.List{VL.Common.ORM.Utilities.QueryBuilders.FieldAlias})">
+            <summary>
+            转译为对应数据库的字符串
+            </summary>
+            <param name="fieldAliases"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.DbTranslateHelper.ToSQLString(VL.Common.ORM.Utilities.QueryBuilders.FieldAlias)">
+            <summary>
+            转译为对应数据库的字符串
+            </summary>
+            <param name="fieldAlias"></param>
+            <returns></returns>
+        </member>
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.IDbQueryBuilder">
+            <summary>
+            数据库语句构建类
+            </summary>
+        </member>
+        <member name="P:VL.Common.ORM.Utilities.QueryBuilders.IDbQueryBuilder.OperateType">
+            <summary>
+            操作类型
+            </summary>
+        </member>
+        <member name="P:VL.Common.ORM.Utilities.QueryBuilders.IDbQueryBuilder.InsertBuilders">
+            <summary>
+            Insert语句构建器
+            </summary>
+        </member>
+        <member name="P:VL.Common.ORM.Utilities.QueryBuilders.IDbQueryBuilder.InsertBuilder">
+            <summary>
+            Insert语句构建器
+            </summary>
+        </member>
+        <member name="P:VL.Common.ORM.Utilities.QueryBuilders.IDbQueryBuilder.SelectBuilders">
+            <summary>
+            Select语句构建器
+            </summary>
+        </member>
+        <member name="P:VL.Common.ORM.Utilities.QueryBuilders.IDbQueryBuilder.SelectBuilder">
+            <summary>
+            Select语句构建器
+            </summary>
+        </member>
+        <member name="P:VL.Common.ORM.Utilities.QueryBuilders.IDbQueryBuilder.UpdateBuilders">
+            <summary>
+            Update语句构建器
+            </summary>
+        </member>
+        <member name="P:VL.Common.ORM.Utilities.QueryBuilders.IDbQueryBuilder.UpdateBuilder">
+            <summary>
+            Update语句构建器
+            </summary>
+        </member>
+        <member name="P:VL.Common.ORM.Utilities.QueryBuilders.IDbQueryBuilder.DeleteBuilder">
+            <summary>
+            Delete语句构建器
+            </summary>
+        </member>
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.OperateType">
+            <summary>
+            CRUD操作类别
+            </summary>
+        </member>
+        <member name="F:VL.Common.ORM.Utilities.QueryBuilders.OperateType.Insert">
+            <summary>
+            增
+            </summary>
+        </member>
+        <member name="F:VL.Common.ORM.Utilities.QueryBuilders.OperateType.Delete">
+            <summary>
+            删
+            </summary>
+        </member>
+        <member name="F:VL.Common.ORM.Utilities.QueryBuilders.OperateType.Update">
+            <summary>
+            改
+            </summary>
+        </member>
+        <member name="F:VL.Common.ORM.Utilities.QueryBuilders.OperateType.Select">
+            <summary>
+            查
+            </summary>
+        </member>
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.MSSQLQueryBuilder">
+            <summary>
+            查询构造器
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryBuilders.QueryBuilderEx.AddParameter(System.Data.Common.DbCommand,VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.PDMDbPropertyOperateValue)">
+            <summary>
+            基于(属性,操作,值)添加参数
+            </summary>
+            <param name="command"></param>
+            <param name="session"></param>
+            <param name="where"></param>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryBuilders.QueryBuilderEx.AddParameter(System.Data.Common.DbCommand,VL.Common.DAS.Objects.DbSession,System.Collections.Generic.List{VL.Common.ORM.Utilities.QueryBuilders.PDMDbPropertyOperateValue})">
+            <summary>
+            基于(属性,操作,值)的集合添加参数
+            </summary>
+            <param name="command"></param>
+            <param name="session"></param>
+            <param name="pdmDbPropertyOperateValues"></param>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryBuilders.QueryBuilderEx.AddParameter(System.Data.Common.DbCommand,VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.PDMDbPropertyValue)">
+            <summary>
+            基于(属性,值)添加参数
+            </summary>
+            <param name="command"></param>
+            <param name="session"></param>
+            <param name="pdmDbPropertyValue"></param>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryBuilders.QueryBuilderEx.AddParameter(System.Data.Common.DbCommand,VL.Common.DAS.Objects.DbSession,System.Collections.Generic.List{VL.Common.ORM.Utilities.QueryBuilders.PDMDbPropertyValue})">
+            <summary>
+            基于(属性,值)的集合添加参数
+            </summary>
+            <param name="command"></param>
+            <param name="session"></param>
+            <param name="pdmDbPropertyValues"></param>
+        </member>
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.DeleteBuilder">
+            <summary>
+            Delete相关的过滤条件
+            </summary>
+        </member>
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.ComponentFieldAliases">
+            <summary>
+            属性,操作,值
+            </summary>
+        </member>
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.FieldAliases">
+            <summary>
+            字段
+            </summary>
+        </member>
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.FieldAlias">
+            <summary>
+            字段
+            </summary>
+        </member>
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.ComponentOrder">
+            <summary>
+            属性,操作,值
+            </summary>
+        </member>
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.Order">
+            <summary>
+            Order只能由内部设置进行操作,不能通过外部传递参数
+            内部直接拼接字符串
+            </summary>
+        </member>
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.OrderType">
+            <summary>
+            排序方式
+            </summary>
+        </member>
+        <member name="F:VL.Common.ORM.Utilities.QueryBuilders.OrderType.asc">
+            <summary>
+            正序
+            </summary>
+        </member>
+        <member name="F:VL.Common.ORM.Utilities.QueryBuilders.OrderType.desc">
+            <summary>
+            倒序
+            </summary>
+        </member>
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.ComponentValue">
+            <summary>
+            属性,操作,值
+            </summary>
+        </member>
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.ComponentWhere">
+            <summary>
+            属性,操作,值
+            </summary>
+        </member>
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.PDMDbPropertyOperateValue">
+            <summary>
+            属性,操作,值
+            </summary>
+        </member>
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.OperatorType">
+            <summary>
+            操作符类别
+            </summary>
+        </member>
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.PDMDbPropertyValue">
+            <summary>
+            属性,操作,值
+            </summary>
+        </member>
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.InsertBuilder">
+            <summary>
+            Insert Values
+            </summary>
+        </member>
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.SelectBuilder">
+            <summary>
+            Select只能由内部设置进行操作,不能通过外部传递参数
+            内部直接拼接字符串
+            </summary>
+        </member>
+        <member name="T:VL.Common.ORM.Utilities.QueryOperators.IDbQueryOperator">
+            <summary>
+            数据库操作类
+            提供数据库操作类的规范
+            </summary>
+        </member>
+        <member name="P:VL.Common.ORM.Utilities.QueryOperators.IDbQueryOperator.IsLogQuery">
+            <summary>
+            是否输出查询字符串
+            </summary>
+        </member>
+        <member name="P:VL.Common.ORM.Utilities.QueryOperators.IDbQueryOperator.DirectoryPath">
+            <summary>
+            日志输出文件夹
+            </summary>
+        </member>
+        <member name="P:VL.Common.ORM.Utilities.QueryOperators.IDbQueryOperator.FilePath">
+            <summary>
+            日志输出文件
+            </summary>
+        </member>
+        <member name="F:VL.Common.ORM.Utilities.QueryOperators.IDbQueryOperator.LogLocker">
+            <summary>
+            日志锁
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.IDbQueryOperator.WriteQueryLog(System.Data.Common.DbCommand)">
+            <summary>
+            输出日志
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.IDbQueryOperator.Insert``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.IDbQueryBuilder)">
+            <summary>
+            返回 是否有数据受操作影响
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.IDbQueryOperator.Insert``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.InsertBuilder)">
+            <summary>
+            返回 是否有数据受操作影响
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.IDbQueryOperator.InsertAll``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.IDbQueryBuilder)">
+            <summary>
+            返回 是否有数据受操作影响
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.IDbQueryOperator.Delete``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.IDbQueryBuilder)">
+            <summary>
+            返回 是否有数据受操作影响
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.IDbQueryOperator.Delete``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.DeleteBuilder)">
+            <summary>
+            返回 是否有数据受操作影响
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.IDbQueryOperator.Update``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.IDbQueryBuilder)">
+            <summary>
+            返回 是否有数据受操作影响
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.IDbQueryOperator.Update``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.UpdateBuilder)">
+            <summary>
+            返回 是否有数据受操作影响
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.IDbQueryOperator.UpdateAll``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.IDbQueryBuilder)">
+            <summary>
+            返回 是否有数据受操作影响
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.IDbQueryOperator.Select``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.IDbQueryBuilder)">
+            <summary>
+            未查询到数据时返回 null
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.IDbQueryOperator.Select``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.SelectBuilder)">
+            <summary>
+            未查询到数据时返回 null
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.IDbQueryOperator.SelectAll``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.IDbQueryBuilder)">
+            <summary>
+            未查询到数据时返回 New List()
+            单个SelectBuilder查询一组数据
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.IDbQueryOperator.SelectAll``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.SelectBuilder)">
+            <summary>
+            未查询到数据时返回 New List()
+            单个SelectBuilder查询一组数据
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.IDbQueryOperator.SelectAll``1(VL.Common.DAS.Objects.DbSession)">
+            <summary>
+            未查询到数据时返回 New List()
+            单个SelectBuilder查询一组数据
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.IDbQueryOperator.SelectUnion``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.IDbQueryBuilder)">
+            <summary>
+            未查询到数据时返回 New List()
+            多个SelectBuilder组合查询
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.IDbQueryOperator.SelectAsInt``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.SelectBuilder)">
+            <summary>
+            未查询到数据时返回 null
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.IDbQueryOperator.SelectAsLong``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.SelectBuilder)">
+            <summary>
+            未查询到数据时返回 null
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.IDbQueryOperator.SelectAsString``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.SelectBuilder)">
+            <summary>
+            未查询到数据时返回 null
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.IDbQueryOperator.SelectAsDateTime``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.SelectBuilder)">
+            <summary>
+            未查询到数据时返回 null
+            </summary>
+        </member>
+        <member name="T:VL.Common.ORM.Utilities.QueryOperators.MSSQLQueryOperator">
+            <summary>
+            针对MSSQL数据库的操作类
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.MSSQLQueryOperator.Insert``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.IDbQueryBuilder)">
+            <summary>
+            返回 是否成功新增
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.MSSQLQueryOperator.Insert``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.InsertBuilder)">
+            <summary>
+            返回 是否成功新增
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.MSSQLQueryOperator.InsertAll``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.IDbQueryBuilder)">
+            <summary>
+            返回 全部新增都成功
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.MSSQLQueryOperator.Delete``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.IDbQueryBuilder)">
+            <summary>
+            失败表示影响数据为0
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.MSSQLQueryOperator.Delete``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.DeleteBuilder)">
+            <summary>
+            失败表示影响数据为0
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.MSSQLQueryOperator.Update``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.IDbQueryBuilder)">
+            <summary>
+            失败表示存在更新影响条数为0的update
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.MSSQLQueryOperator.Update``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.UpdateBuilder)">
+            <summary>
+            失败表示存在更新影响条数为0的update
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.MSSQLQueryOperator.UpdateAll``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.IDbQueryBuilder)">
+            <summary>
+            失败表示存在更新影响条数为0的update
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.MSSQLQueryOperator.Select``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.IDbQueryBuilder)">
+            <summary>
+            失败返回null
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.MSSQLQueryOperator.Select``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.SelectBuilder)">
+            <summary>
+            失败返回null
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:VL.Common.ORM.Utilities.QueryOperators.MSSQLQueryOperator.SelectAll``1(VL.Common.DAS.Objects.DbSession)" -->
+        <!-- Badly formed XML comment ignored for member "M:VL.Common.ORM.Utilities.QueryOperators.MSSQLQueryOperator.SelectAll``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.IDbQueryBuilder)" -->
+        <!-- Badly formed XML comment ignored for member "M:VL.Common.ORM.Utilities.QueryOperators.MSSQLQueryOperator.SelectAll``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.SelectBuilder)" -->
+        <!-- Badly formed XML comment ignored for member "M:VL.Common.ORM.Utilities.QueryOperators.MSSQLQueryOperator.SelectUnion``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.IDbQueryBuilder)" -->
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.MSSQLQueryOperator.SelectAsInt``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.SelectBuilder)">
+            <summary>
+            未查询到数据时返回 null
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.MSSQLQueryOperator.SelectAsLong``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.SelectBuilder)">
+            <summary>
+            未查询到数据时返回 null
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.MSSQLQueryOperator.SelectAsString``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.SelectBuilder)">
+            <summary>
+            未查询到数据时返回 null
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryOperators.MSSQLQueryOperator.SelectAsDateTime``1(VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.SelectBuilder)">
+            <summary>
+            未查询到数据时返回 null
+            </summary>
+        </member>
+        <member name="T:VL.Common.ORM.Utilities.Interfaces.IParameterizable">
+            <summary>
+            可参数化
+            </summary>
+        </member>
+        <member name="P:VL.Common.ORM.Utilities.Interfaces.IParameterizable.NickName">
+            <summary>
+            辅助名称适用于参数重复
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.Interfaces.IParameterizable.GetParameterName(VL.Common.DAS.Objects.DbSession)">
+            <summary>
+            获取参数名
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
