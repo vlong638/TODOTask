@@ -17,13 +17,13 @@ namespace TODOTask.Objects.Entities
             {
                 var subselect = new SelectBuilder();
                 subselect.TableName = nameof(TEvent);
-                subselect.ComponentFieldAliases.FieldAliases.Add(TEventProperties.TaskId);
-                subselect.ComponentWhere.Wheres.Add(new PDMDbPropertyOperateValue(TEventProperties.EventId, OperatorType.Equal, tEvent.EventId));
-                builder.ComponentWhere.Wheres.Add(new PDMDbPropertyOperateValue(TTaskProperties.TaskId, OperatorType.Equal, subselect));
+                subselect.ComponentSelect.Values.Add(TEventProperties.TaskId);
+                subselect.ComponentWhere.Wheres.Add(new ComponentValueOfWhere(TEventProperties.EventId, tEvent.EventId, LocateType.Equal));
+                builder.ComponentWhere.Wheres.Add(new ComponentValueOfWhere(TTaskProperties.TaskId, subselect, LocateType.Equal));
             }
             else
             {
-                builder.ComponentWhere.Wheres.Add(new PDMDbPropertyOperateValue(TTaskProperties.TaskId, OperatorType.Equal, tEvent.TaskId));
+                builder.ComponentWhere.Wheres.Add(new ComponentValueOfWhere(TTaskProperties.TaskId, tEvent.TaskId, LocateType.Equal));
             }
             query.SelectBuilders.Add(builder);
             tEvent.Task = IORMProvider.GetQueryOperator(session).Select<TTask>(session, query);

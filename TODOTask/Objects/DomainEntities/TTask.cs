@@ -43,8 +43,8 @@ namespace TODOTask.Objects.Entities
             var @operator = IORMProvider.GetQueryOperator(session);
             //关联事件检测,任务开始必须有关联的事件
             var select = IORMProvider.GetDbQueryBuilder(session).SelectBuilder;
-            select.ComponentFieldAliases.FieldAliases.Add(new FieldAlias("Count(*)"));
-            select.ComponentWhere.Wheres.Add(new PDMDbPropertyOperateValue(TEventProperties.TaskId, OperatorType.Equal, TaskId));
+            select.ComponentSelect.Values.Add(new ComponentValueOfSelect("Count(*)"));
+            select.ComponentWhere.Wheres.Add(new ComponentValueOfWhere(TEventProperties.TaskId, TaskId, LocateType.Equal));
             var result = @operator.SelectAsInt<TEvent>(session, select);
             if (result == null || result.Value <= 0)
             {
@@ -55,12 +55,12 @@ namespace TODOTask.Objects.Entities
             //版本相关信息录入
             Tracing += HelperOfTask.GetTracingMessage(TracingType.StartTask);
             var query = IORMProvider.GetDbQueryBuilder(session).UpdateBuilder;
-            query.ComponentWhere.Wheres.Add(new PDMDbPropertyOperateValue(TTaskProperties.TaskId, OperatorType.Equal, TaskId));
-            query.ComponentWhere.Wheres.Add(new PDMDbPropertyOperateValue(TTaskProperties.DealStatus, OperatorType.Equal, ETaskDealStatus.Ready, "OldDealStatus"));
-            query.ComponentWhere.Wheres.Add(new PDMDbPropertyOperateValue(TTaskProperties.Version, OperatorType.Equal, Version, "OldVersion"));
-            query.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.Version, Version + 1, "NewVersion"));//总是更新
-            query.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.Tracing, Tracing));//总是更新
-            query.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.DealStatus, ETaskDealStatus.Processing, "NewDealStatus"));
+            query.ComponentWhere.Wheres.Add(new ComponentValueOfWhere(TTaskProperties.TaskId, TaskId, LocateType.Equal));
+            query.ComponentWhere.Wheres.Add(new ComponentValueOfWhere(TTaskProperties.DealStatus, ETaskDealStatus.Ready, LocateType.Equal, "OldDealStatus"));
+            query.ComponentWhere.Wheres.Add(new ComponentValueOfWhere(TTaskProperties.Version, Version, LocateType.Equal));
+            query.ComponentSet.Values.Add(new ComponentValueOfSet(TTaskProperties.Version, 1, UpdateType.IncreaseByValue, "IncreaseValue"));//总是更新
+            query.ComponentSet.Values.Add(new ComponentValueOfSet(TTaskProperties.Tracing, Tracing));//总是更新
+            query.ComponentSet.Values.Add(new ComponentValueOfSet(TTaskProperties.DealStatus, ETaskDealStatus.Processing, "NewDealStatus"));
             if (@operator.Update<TTask>(session, query))
             {
                 return StartTaskResult.Success;
@@ -81,10 +81,10 @@ namespace TODOTask.Objects.Entities
         {
             //保存入数据库
             var query = IORMProvider.GetDbQueryBuilder(session).UpdateBuilder;
-            query.ComponentWhere.Wheres.Add(new PDMDbPropertyOperateValue(TTaskProperties.TaskId, OperatorType.Equal, TaskId));
+            query.ComponentWhere.Wheres.Add(new ComponentValueOfWhere(TTaskProperties.TaskId, TaskId, LocateType.Equal));
             if (fields.Contains(nameof(Topic)))
             {
-                query.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.Topic, Topic));
+                query.ComponentSet.Values.Add(new ComponentValueOfSet(TTaskProperties.Topic,UpdateType.SetValue, Topic));
             }
             var @operator = IORMProvider.GetQueryOperator(session);
             if (@operator.Update<TTask>(session, query))
@@ -108,7 +108,7 @@ namespace TODOTask.Objects.Entities
             this.DbSelect(session);
             //删除与任务关联的事件
             var query = IORMProvider.GetDbQueryBuilder(session).DeleteBuilder;
-            query.ComponentWhere.Wheres.Add(new PDMDbPropertyOperateValue(TEventProperties.TaskId, OperatorType.Equal, TaskId));
+            query.ComponentWhere.Wheres.Add(new ComponentValueOfWhere(TEventProperties.TaskId, TaskId, LocateType.Equal));
             var @operator = IORMProvider.GetQueryOperator(session);
             if (!@operator.Delete<TEvent>(session, query))
             {
@@ -133,9 +133,9 @@ namespace TODOTask.Objects.Entities
         public int? GetUnsettledEventCount(DbSession session)
         {
             var query = IORMProvider.GetDbQueryBuilder(session).SelectBuilder;
-            query.ComponentFieldAliases.FieldAliases.Add(new FieldAlias("Count(*)"));
-            query.ComponentWhere.Wheres.Add(new PDMDbPropertyOperateValue(TEventProperties.TaskId, OperatorType.Equal, TaskId));
-            query.ComponentWhere.Wheres.Add(new PDMDbPropertyOperateValue(TEventProperties.DealStatus, OperatorType.NotEqual, EEventDealStatus.Settled));
+            query.ComponentSelect.Values.Add(new ComponentValueOfSelect("Count(*)"));
+            query.ComponentWhere.Wheres.Add(new ComponentValueOfWhere(TEventProperties.TaskId, TaskId, LocateType.Equal));
+            query.ComponentWhere.Wheres.Add(new ComponentValueOfWhere(TEventProperties.DealStatus, EEventDealStatus.Settled, LocateType.NotEqual));
             var @operator = IORMProvider.GetQueryOperator(session);
             return @operator.SelectAsInt<TEvent>(session, query);
         }
@@ -162,7 +162,7 @@ namespace TODOTask.Objects.Entities
         public List<TTask> GetAllTODOTasks(DbSession session)
         {
             var query = IORMProvider.GetDbQueryBuilder(session).SelectBuilder;
-            query.ComponentWhere.Wheres.Add(new PDMDbPropertyOperateValue(TEventProperties.DealStatus, OperatorType.In, new Int16[] { (Int16)ETaskDealStatus.Processing, (Int16)ETaskDealStatus.Unsettled }));
+            query.ComponentWhere.Wheres.Add(new ComponentValueOfWhere(TEventProperties.DealStatus, new Int16[] { (Int16)ETaskDealStatus.Processing, (Int16)ETaskDealStatus.Unsettled }, LocateType.In));
             var @operator = IORMProvider.GetQueryOperator(session);
             return @operator.SelectAll<TTask>(session, query);
         }
@@ -178,7 +178,7 @@ namespace TODOTask.Objects.Entities
         {
             //从数据库删除
             var query = IORMProvider.GetDbQueryBuilder(session).DeleteBuilder;
-            query.ComponentWhere.Wheres.Add(new PDMDbPropertyOperateValue(TEventProperties.TaskId, OperatorType.Equal, TaskId));
+            query.ComponentWhere.Wheres.Add(new ComponentValueOfWhere(TEventProperties.TaskId, TaskId, LocateType.Equal));
             var @operator = IORMProvider.GetQueryOperator(session);
             return @operator.Delete<TEvent>(session, query);
         }
@@ -243,15 +243,16 @@ namespace TODOTask.Objects.Entities
             }
             //保存入数据库
             var query = IORMProvider.GetDbQueryBuilder(session).UpdateBuilder;
-            query.ComponentWhere.Wheres.Add(new PDMDbPropertyOperateValue(TTaskProperties.TaskId, OperatorType.Equal, TaskId));
-            query.ComponentWhere.Wheres.Add(new PDMDbPropertyOperateValue(TTaskProperties.Version, OperatorType.Equal, Version, "OldVersion"));
-            query.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.Version, Version + 1, "NewVersion"));//总是更新
-            query.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.Tracing, Tracing));//总是更新
+            query.ComponentWhere.Wheres.Add(new ComponentValueOfWhere(TTaskProperties.TaskId, TaskId, LocateType.Equal));
+            query.ComponentWhere.Wheres.Add(new ComponentValueOfWhere(TTaskProperties.Version, Version, LocateType.Equal));
+            query.ComponentSet.Values.Add(new ComponentValueOfSet(TTaskProperties.Version,1, UpdateType.IncreaseByValue, "IncreaseValue"));//总是更新
+            query.ComponentSet.Values.Add(new ComponentValueOfSet(TTaskProperties.Tracing,UpdateType.SetValue, Tracing));//总是更新
             if (isTaskDealStatusChanged)
             {
-                query.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.DealStatus, DealStatus));
+                query.ComponentSet.Values.Add(new ComponentValueOfSet(TTaskProperties.DealStatus, DealStatus, UpdateType.SetValue));
             }
             var @operator = IORMProvider.GetQueryOperator(session);
+            var queryString = query.ToQueryString(session);
             if (@operator.Update<TTask>(session, query))
             {
                 return UpdateTaskResult.Success;
@@ -296,12 +297,12 @@ namespace TODOTask.Objects.Entities
         //{
         //    Tracing += HelperOfTask.GetTracingMessage(tracingType);
         //    var query = IORMProvider.GetDbQueryBuilder(session).UpdateBuilder;
-        //    query.ComponentWhere.Wheres.Add(new PDMDbPropertyOperateValue(TTaskProperties.TaskId, OperatorType.Equal, TaskId));
-        //    query.ComponentWhere.Wheres.Add(new PDMDbPropertyOperateValue(TTaskProperties.DealStatus, OperatorType.Equal, ETaskDealStatus.Ready, "OldDealStatus"));
-        //    query.ComponentWhere.Wheres.Add(new PDMDbPropertyOperateValue(TTaskProperties.Version, OperatorType.Equal, Version, "OldVersion"));
-        //    query.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.Version, Version + 1, "NewVersion"));//总是更新
-        //    query.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.Tracing, Tracing));//总是更新
-        //    query.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.DealStatus, DealStatus, "NewDealStatus"));
+        //    query.ComponentWhere.Wheres.Add(new ComponentValueOfWhere(TTaskProperties.TaskId, TaskId, LocateType.Equal));
+        //    query.ComponentWhere.Wheres.Add(new ComponentValueOfWhere(TTaskProperties.DealStatus, LocateType.Equal, ETaskDealStatus.Ready, "OldDealStatus"));
+        //    query.ComponentWhere.Wheres.Add(new ComponentValueOfWhere(TTaskProperties.Version, Version, LocateType.Equal, "OldVersion"));
+        //    query.ComponentSet.Values.Add(new ComponentValueOfSet(TTaskProperties.Version, Version + 1, "NewVersion"));//总是更新
+        //    query.ComponentSet.Values.Add(new ComponentValueOfSet(TTaskProperties.Tracing, Tracing));//总是更新
+        //    query.ComponentSet.Values.Add(new ComponentValueOfSet(TTaskProperties.DealStatus, DealStatus, "NewDealStatus"));
         //    var @operator = IORMProvider.GetQueryOperator(session);
         //    if (@operator.Update<TTask>(session, query))
         //    {

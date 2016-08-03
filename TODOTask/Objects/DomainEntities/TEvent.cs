@@ -120,10 +120,10 @@ namespace TODOTask.Objects.Entities
             }
             //更新事件状态
             var query = IORMProvider.GetDbQueryBuilder(session).UpdateBuilder;
-            query.ComponentWhere.Wheres.Add(new PDMDbPropertyOperateValue(TEventProperties.EventId, OperatorType.Equal, EventId));
-            query.ComponentWhere.Wheres.Add(new PDMDbPropertyOperateValue(TEventProperties.Version, OperatorType.Equal, Version, "OldVersion"));
-            query.ComponentValue.Values.Add(new PDMDbPropertyValue(TEventProperties.DealStatus, DealStatus));
-            query.ComponentValue.Values.Add(new PDMDbPropertyValue(TEventProperties.Version, Version+1,"NewVersion"));
+            query.ComponentWhere.Wheres.Add(new ComponentValueOfWhere(TEventProperties.EventId, EventId, LocateType.Equal));
+            query.ComponentWhere.Wheres.Add(new ComponentValueOfWhere(TEventProperties.Version, Version, LocateType.Equal, "OldVersion"));
+            query.ComponentSet.Values.Add(new ComponentValueOfSet(TEventProperties.DealStatus, DealStatus));
+            query.ComponentSet.Values.Add(new ComponentValueOfSet(TEventProperties.Version, 1, UpdateType.IncreaseByValue, "IncreaseVersion"));
             var @operator = IORMProvider.GetQueryOperator(session);
             if (!@operator.Update<TEvent>(session, query))
             {

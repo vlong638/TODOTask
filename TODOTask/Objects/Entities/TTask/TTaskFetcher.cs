@@ -13,7 +13,7 @@ namespace TODOTask.Objects.Entities
         {
             var query = IORMProvider.GetDbQueryBuilder(session);
             SelectBuilder builder = new SelectBuilder();
-            builder.ComponentWhere.Wheres.Add(new PDMDbPropertyOperateValue(TEventProperties.TaskId, OperatorType.Equal, tTask.TaskId));
+            builder.ComponentWhere.Wheres.Add(new ComponentValueOfWhere(TEventProperties.TaskId, tTask.TaskId, LocateType.Equal));
             query.SelectBuilders.Add(builder);
             tTask.Events = IORMProvider.GetQueryOperator(session).SelectAll<TEvent>(session, query);
             return tTask.Events.Count > 0;

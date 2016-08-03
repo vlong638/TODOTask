@@ -15,33 +15,33 @@ namespace TODOTask.Objects.Entities
         public static bool DbDelete(this TTask entity, DbSession session)
         {
             var query = IORMProvider.GetDbQueryBuilder(session);
-            query.DeleteBuilder.ComponentWhere.Wheres.Add(new PDMDbPropertyOperateValue(TTaskProperties.TaskId, OperatorType.Equal, entity.TaskId));
+            query.DeleteBuilder.ComponentWhere.Wheres.Add(new ComponentValueOfWhere(TTaskProperties.TaskId, entity.TaskId, LocateType.Equal));
             return IORMProvider.GetQueryOperator(session).Delete<TTask>(session, query);
         }
         public static bool DbDelete(this List<TTask> entities, DbSession session)
         {
             var query = IORMProvider.GetDbQueryBuilder(session);
             var Ids = entities.Select(c =>c.TaskId );
-            query.DeleteBuilder.ComponentWhere.Wheres.Add(new PDMDbPropertyOperateValue(TTaskProperties.TaskId, OperatorType.In, Ids));
+            query.DeleteBuilder.ComponentWhere.Wheres.Add(new ComponentValueOfWhere(TTaskProperties.TaskId, Ids, LocateType.In));
             return IORMProvider.GetQueryOperator(session).Delete<TTask>(session, query);
         }
         public static bool DbInsert(this TTask entity, DbSession session)
         {
             var query = IORMProvider.GetDbQueryBuilder(session);
             InsertBuilder builder = new InsertBuilder();
-            builder.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.TaskId, entity.TaskId));
+            builder.ComponentInsert.Values.Add(new ComponentValueOfInsert(TTaskProperties.TaskId, entity.TaskId));
             if (entity.Topic == null)
             {
                 throw new NotImplementedException("缺少必填的参数项值, 参数项: " + nameof(entity.Topic));
             }
-            builder.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.Topic, entity.Topic));
+            builder.ComponentInsert.Values.Add(new ComponentValueOfInsert(TTaskProperties.Topic, entity.Topic));
             if (entity.Tracing == null)
             {
                 throw new NotImplementedException("缺少必填的参数项值, 参数项: " + nameof(entity.Tracing));
             }
-            builder.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.Tracing, entity.Tracing));
-            builder.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.DealStatus, entity.DealStatus));
-            builder.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.Version, entity.Version));
+            builder.ComponentInsert.Values.Add(new ComponentValueOfInsert(TTaskProperties.Tracing, entity.Tracing));
+            builder.ComponentInsert.Values.Add(new ComponentValueOfInsert(TTaskProperties.DealStatus, entity.DealStatus));
+            builder.ComponentInsert.Values.Add(new ComponentValueOfInsert(TTaskProperties.Version, entity.Version));
             query.InsertBuilders.Add(builder);
             return IORMProvider.GetQueryOperator(session).Insert<TTask>(session, query);
         }
@@ -51,19 +51,19 @@ namespace TODOTask.Objects.Entities
             foreach (var entity in entities)
             {
                 InsertBuilder builder = new InsertBuilder();
-                builder.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.TaskId, entity.TaskId));
+                builder.ComponentInsert.Values.Add(new ComponentValueOfInsert(TTaskProperties.TaskId, entity.TaskId));
             if (entity.Topic == null)
             {
                 throw new NotImplementedException("缺少必填的参数项值, 参数项: " + nameof(entity.Topic));
             }
-                builder.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.Topic, entity.Topic));
+                builder.ComponentInsert.Values.Add(new ComponentValueOfInsert(TTaskProperties.Topic, entity.Topic));
             if (entity.Tracing == null)
             {
                 throw new NotImplementedException("缺少必填的参数项值, 参数项: " + nameof(entity.Tracing));
             }
-                builder.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.Tracing, entity.Tracing));
-                builder.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.DealStatus, entity.DealStatus));
-                builder.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.Version, entity.Version));
+                builder.ComponentInsert.Values.Add(new ComponentValueOfInsert(TTaskProperties.Tracing, entity.Tracing));
+                builder.ComponentInsert.Values.Add(new ComponentValueOfInsert(TTaskProperties.DealStatus, entity.DealStatus));
+                builder.ComponentInsert.Values.Add(new ComponentValueOfInsert(TTaskProperties.Version, entity.Version));
                 query.InsertBuilders.Add(builder);
             }
             return IORMProvider.GetQueryOperator(session).InsertAll<TTask>(session, query);
@@ -72,32 +72,32 @@ namespace TODOTask.Objects.Entities
         {
             var query = IORMProvider.GetDbQueryBuilder(session);
             UpdateBuilder builder = new UpdateBuilder();
-            builder.ComponentWhere.Wheres.Add(new PDMDbPropertyOperateValue(TTaskProperties.TaskId, OperatorType.Equal, entity.TaskId));
+            builder.ComponentWhere.Wheres.Add(new ComponentValueOfWhere(TTaskProperties.TaskId, entity.TaskId, LocateType.Equal));
             if (fields==null|| fields.Length==0)
             {
-                builder.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.TaskId, entity.TaskId));
-                builder.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.Topic, entity.Topic));
-                builder.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.Tracing, entity.Tracing));
-                builder.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.DealStatus, entity.DealStatus));
-                builder.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.Version, entity.Version));
+                builder.ComponentSet.Values.Add(new ComponentValueOfSet(TTaskProperties.TaskId, entity.TaskId));
+                builder.ComponentSet.Values.Add(new ComponentValueOfSet(TTaskProperties.Topic, entity.Topic));
+                builder.ComponentSet.Values.Add(new ComponentValueOfSet(TTaskProperties.Tracing, entity.Tracing));
+                builder.ComponentSet.Values.Add(new ComponentValueOfSet(TTaskProperties.DealStatus, entity.DealStatus));
+                builder.ComponentSet.Values.Add(new ComponentValueOfSet(TTaskProperties.Version, entity.Version));
             }
             else
             {
                 if (fields.Contains(TTaskProperties.Topic))
                 {
-                    builder.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.Topic, entity.Topic));
+                    builder.ComponentSet.Values.Add(new ComponentValueOfSet(TTaskProperties.Topic, entity.Topic));
                 }
                 if (fields.Contains(TTaskProperties.Tracing))
                 {
-                    builder.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.Tracing, entity.Tracing));
+                    builder.ComponentSet.Values.Add(new ComponentValueOfSet(TTaskProperties.Tracing, entity.Tracing));
                 }
                 if (fields.Contains(TTaskProperties.DealStatus))
                 {
-                    builder.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.DealStatus, entity.DealStatus));
+                    builder.ComponentSet.Values.Add(new ComponentValueOfSet(TTaskProperties.DealStatus, entity.DealStatus));
                 }
                 if (fields.Contains(TTaskProperties.Version))
                 {
-                    builder.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.Version, entity.Version));
+                    builder.ComponentSet.Values.Add(new ComponentValueOfSet(TTaskProperties.Version, entity.Version));
                 }
             }
             query.UpdateBuilders.Add(builder);
@@ -109,32 +109,32 @@ namespace TODOTask.Objects.Entities
             foreach (var entity in entities)
             {
                 UpdateBuilder builder = new UpdateBuilder();
-                builder.ComponentWhere.Wheres.Add(new PDMDbPropertyOperateValue(TTaskProperties.TaskId, OperatorType.Equal, entity.TaskId));
+                builder.ComponentWhere.Wheres.Add(new ComponentValueOfWhere(TTaskProperties.TaskId, entity.TaskId, LocateType.Equal));
                 if (fields==null|| fields.Length==0)
                 {
-                    builder.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.TaskId, entity.TaskId));
-                    builder.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.Topic, entity.Topic));
-                    builder.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.Tracing, entity.Tracing));
-                    builder.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.DealStatus, entity.DealStatus));
-                    builder.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.Version, entity.Version));
+                    builder.ComponentSet.Values.Add(new ComponentValueOfSet(TTaskProperties.TaskId, entity.TaskId));
+                    builder.ComponentSet.Values.Add(new ComponentValueOfSet(TTaskProperties.Topic, entity.Topic));
+                    builder.ComponentSet.Values.Add(new ComponentValueOfSet(TTaskProperties.Tracing, entity.Tracing));
+                    builder.ComponentSet.Values.Add(new ComponentValueOfSet(TTaskProperties.DealStatus, entity.DealStatus));
+                    builder.ComponentSet.Values.Add(new ComponentValueOfSet(TTaskProperties.Version, entity.Version));
                 }
                 else
                 {
                     if (fields.Contains(TTaskProperties.Topic))
                     {
-                        builder.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.Topic, entity.Topic));
+                        builder.ComponentSet.Values.Add(new ComponentValueOfSet(TTaskProperties.Topic, entity.Topic));
                     }
                     if (fields.Contains(TTaskProperties.Tracing))
                     {
-                        builder.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.Tracing, entity.Tracing));
+                        builder.ComponentSet.Values.Add(new ComponentValueOfSet(TTaskProperties.Tracing, entity.Tracing));
                     }
                     if (fields.Contains(TTaskProperties.DealStatus))
                     {
-                        builder.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.DealStatus, entity.DealStatus));
+                        builder.ComponentSet.Values.Add(new ComponentValueOfSet(TTaskProperties.DealStatus, entity.DealStatus));
                     }
                     if (fields.Contains(TTaskProperties.Version))
                     {
-                        builder.ComponentValue.Values.Add(new PDMDbPropertyValue(TTaskProperties.Version, entity.Version));
+                        builder.ComponentSet.Values.Add(new ComponentValueOfSet(TTaskProperties.Version, entity.Version));
                     }
                 }
                 query.UpdateBuilders.Add(builder);
@@ -149,21 +149,21 @@ namespace TODOTask.Objects.Entities
             SelectBuilder builder = new SelectBuilder();
             if (fields.Count() == 0)
             {
-                builder.ComponentFieldAliases.FieldAliases.Add(TTaskProperties.TaskId);
-                builder.ComponentFieldAliases.FieldAliases.Add(TTaskProperties.Topic);
-                builder.ComponentFieldAliases.FieldAliases.Add(TTaskProperties.Tracing);
-                builder.ComponentFieldAliases.FieldAliases.Add(TTaskProperties.DealStatus);
-                builder.ComponentFieldAliases.FieldAliases.Add(TTaskProperties.Version);
+                builder.ComponentSelect.Values.Add(TTaskProperties.TaskId);
+                builder.ComponentSelect.Values.Add(TTaskProperties.Topic);
+                builder.ComponentSelect.Values.Add(TTaskProperties.Tracing);
+                builder.ComponentSelect.Values.Add(TTaskProperties.DealStatus);
+                builder.ComponentSelect.Values.Add(TTaskProperties.Version);
             }
             else
             {
-                builder.ComponentFieldAliases.FieldAliases.Add(TTaskProperties.TaskId);
+                builder.ComponentSelect.Values.Add(TTaskProperties.TaskId);
                 foreach (var field in fields)
                 {
-                    builder.ComponentFieldAliases.FieldAliases.Add(field);
+                    builder.ComponentSelect.Values.Add(field);
                 }
             }
-            builder.ComponentWhere.Wheres.Add(new PDMDbPropertyOperateValue(TTaskProperties.TaskId, OperatorType.Equal, entity.TaskId));
+            builder.ComponentWhere.Wheres.Add(new ComponentValueOfWhere(TTaskProperties.TaskId, entity.TaskId, LocateType.Equal));
             query.SelectBuilders.Add(builder);
             return IORMProvider.GetQueryOperator(session).Select<TTask>(session, query);
         }
@@ -173,24 +173,24 @@ namespace TODOTask.Objects.Entities
             SelectBuilder builder = new SelectBuilder();
             if (fields.Count() == 0)
             {
-                builder.ComponentFieldAliases.FieldAliases.Add(TTaskProperties.TaskId);
-                builder.ComponentFieldAliases.FieldAliases.Add(TTaskProperties.Topic);
-                builder.ComponentFieldAliases.FieldAliases.Add(TTaskProperties.Tracing);
-                builder.ComponentFieldAliases.FieldAliases.Add(TTaskProperties.DealStatus);
-                builder.ComponentFieldAliases.FieldAliases.Add(TTaskProperties.Version);
+                builder.ComponentSelect.Values.Add(TTaskProperties.TaskId);
+                builder.ComponentSelect.Values.Add(TTaskProperties.Topic);
+                builder.ComponentSelect.Values.Add(TTaskProperties.Tracing);
+                builder.ComponentSelect.Values.Add(TTaskProperties.DealStatus);
+                builder.ComponentSelect.Values.Add(TTaskProperties.Version);
             }
             else
             {
-                builder.ComponentFieldAliases.FieldAliases.Add(TTaskProperties.TaskId);
+                builder.ComponentSelect.Values.Add(TTaskProperties.TaskId);
                 foreach (var field in fields)
                 {
-                    builder.ComponentFieldAliases.FieldAliases.Add(field);
+                    builder.ComponentSelect.Values.Add(field);
                 }
             }
             var Ids = entities.Select(c =>c.TaskId );
             if (Ids.Count() != 0)
             {
-                builder.ComponentWhere.Wheres.Add(new PDMDbPropertyOperateValue(TTaskProperties.TaskId, OperatorType.In, Ids));
+                builder.ComponentWhere.Wheres.Add(new ComponentValueOfWhere(TTaskProperties.TaskId, Ids, LocateType.In));
             }
             query.SelectBuilders.Add(builder);
             return IORMProvider.GetQueryOperator(session).SelectAll<TTask>(session, query);

@@ -77,21 +77,24 @@
             获取对应数据库的参数对象
             </summary>
         </member>
-        <member name="M:VL.Common.ORM.Utilities.DbTranslateHelper.ToQueryString(VL.Common.ORM.Utilities.QueryBuilders.OperatorType)">
+        <member name="M:VL.Common.ORM.Utilities.DbTranslateHelper.ToQueryString(VL.Common.ORM.Utilities.QueryBuilders.LocateType)">
             <summary>
             转译为对应数据库的查询语句
             </summary>
-            <param name="operatorType"></param>
-            <returns></returns>
         </member>
-        <member name="M:VL.Common.ORM.Utilities.DbTranslateHelper.ToSQLString(System.Collections.Generic.List{VL.Common.ORM.Utilities.QueryBuilders.FieldAlias})">
+        <member name="M:VL.Common.ORM.Utilities.DbTranslateHelper.ToQueryString(VL.Common.ORM.Utilities.QueryBuilders.UpdateType)">
+            <summary>
+            转译为对应数据库的查询语句
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.DbTranslateHelper.ToSQLString(System.Collections.Generic.List{VL.Common.ORM.Utilities.QueryBuilders.ComponentValueOfSelect})">
             <summary>
             转译为对应数据库的字符串
             </summary>
             <param name="fieldAliases"></param>
             <returns></returns>
         </member>
-        <member name="M:VL.Common.ORM.Utilities.DbTranslateHelper.ToSQLString(VL.Common.ORM.Utilities.QueryBuilders.FieldAlias)">
+        <member name="M:VL.Common.ORM.Utilities.DbTranslateHelper.ToSQLString(VL.Common.ORM.Utilities.QueryBuilders.ComponentValueOfSelect)">
             <summary>
             转译为对应数据库的字符串
             </summary>
@@ -173,64 +176,42 @@
             查询构造器
             </summary>
         </member>
-        <member name="M:VL.Common.ORM.Utilities.QueryBuilders.QueryBuilderEx.AddParameter(System.Data.Common.DbCommand,VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.PDMDbPropertyOperateValue)">
-            <summary>
-            基于(属性,操作,值)添加参数
-            </summary>
-            <param name="command"></param>
-            <param name="session"></param>
-            <param name="where"></param>
-        </member>
-        <member name="M:VL.Common.ORM.Utilities.QueryBuilders.QueryBuilderEx.AddParameter(System.Data.Common.DbCommand,VL.Common.DAS.Objects.DbSession,System.Collections.Generic.List{VL.Common.ORM.Utilities.QueryBuilders.PDMDbPropertyOperateValue})">
-            <summary>
-            基于(属性,操作,值)的集合添加参数
-            </summary>
-            <param name="command"></param>
-            <param name="session"></param>
-            <param name="pdmDbPropertyOperateValues"></param>
-        </member>
-        <member name="M:VL.Common.ORM.Utilities.QueryBuilders.QueryBuilderEx.AddParameter(System.Data.Common.DbCommand,VL.Common.DAS.Objects.DbSession,VL.Common.ORM.Utilities.QueryBuilders.PDMDbPropertyValue)">
-            <summary>
-            基于(属性,值)添加参数
-            </summary>
-            <param name="command"></param>
-            <param name="session"></param>
-            <param name="pdmDbPropertyValue"></param>
-        </member>
-        <member name="M:VL.Common.ORM.Utilities.QueryBuilders.QueryBuilderEx.AddParameter(System.Data.Common.DbCommand,VL.Common.DAS.Objects.DbSession,System.Collections.Generic.List{VL.Common.ORM.Utilities.QueryBuilders.PDMDbPropertyValue})">
-            <summary>
-            基于(属性,值)的集合添加参数
-            </summary>
-            <param name="command"></param>
-            <param name="session"></param>
-            <param name="pdmDbPropertyValues"></param>
-        </member>
         <member name="T:VL.Common.ORM.Utilities.QueryBuilders.DeleteBuilder">
             <summary>
             Delete相关的过滤条件
             </summary>
         </member>
-        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.ComponentFieldAliases">
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.ComponentOfSelect">
             <summary>
             属性,操作,值
             </summary>
         </member>
-        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.FieldAliases">
-            <summary>
-            字段
-            </summary>
-        </member>
-        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.FieldAlias">
-            <summary>
-            字段
-            </summary>
-        </member>
-        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.ComponentOrder">
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.ComponentOfOrder">
             <summary>
             属性,操作,值
             </summary>
         </member>
-        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.Order">
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.ComponentOfSet">
+            <summary>
+            属性,操作,值
+            </summary>
+        </member>
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.ComponentOfInsert">
+            <summary>
+            属性,操作,值
+            </summary>
+        </member>
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.ComponentValueOfSelects">
+            <summary>
+            字段
+            </summary>
+        </member>
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.ComponentValueOfSelect">
+            <summary>
+            字段
+            </summary>
+        </member>
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.ComponentValueOfOrder">
             <summary>
             Order只能由内部设置进行操作,不能通过外部传递参数
             内部直接拼接字符串
@@ -251,29 +232,64 @@
             倒序
             </summary>
         </member>
-        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.ComponentValue">
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.ComponentOfWhere">
             <summary>
             属性,操作,值
             </summary>
         </member>
-        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.ComponentWhere">
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.ComponentValueOfWhere">
             <summary>
             属性,操作,值
             </summary>
         </member>
-        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.PDMDbPropertyOperateValue">
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.PDMDbPropertyLocateValueEx">
             <summary>
             属性,操作,值
             </summary>
         </member>
-        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.OperatorType">
+        <member name="M:VL.Common.ORM.Utilities.QueryBuilders.PDMDbPropertyLocateValueEx.AddParameter(System.Collections.Generic.List{VL.Common.ORM.Utilities.QueryBuilders.ComponentValueOfWhere},VL.Common.DAS.Objects.DbSession,System.Data.Common.DbCommand)">
+            <summary>
+            基于(属性,操作,值)的集合添加参数
+            </summary>
+        </member>
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.LocateType">
             <summary>
             操作符类别
             </summary>
         </member>
-        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.PDMDbPropertyValue">
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.ComponentValueOfSet">
             <summary>
             属性,操作,值
+            </summary>
+        </member>
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.PDMDbPropertyUpdateValueEx">
+            <summary>
+            属性,操作,值
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryBuilders.PDMDbPropertyUpdateValueEx.AddParameter(System.Collections.Generic.List{VL.Common.ORM.Utilities.QueryBuilders.ComponentValueOfSet},VL.Common.DAS.Objects.DbSession,System.Data.Common.DbCommand)">
+            <summary>
+            基于(属性,操作,值)的集合添加参数
+            </summary>
+        </member>
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.UpdateType">
+            <summary>
+            操作符类别
+            </summary>
+        </member>
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.ComponentValueOfInsert">
+            <summary>
+            属性,操作,值
+            </summary>
+        </member>
+        <member name="T:VL.Common.ORM.Utilities.QueryBuilders.PDMDbPropertyValueEx">
+            <summary>
+            属性,操作,值
+            </summary>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.QueryBuilders.PDMDbPropertyValueEx.AddParameter(System.Collections.Generic.List{VL.Common.ORM.Utilities.QueryBuilders.ComponentValueOfInsert},VL.Common.DAS.Objects.DbSession,System.Data.Common.DbCommand)">
+            <summary>
+            基于(属性,值)的集合添加参数
             </summary>
         </member>
         <member name="T:VL.Common.ORM.Utilities.QueryBuilders.InsertBuilder">
@@ -299,9 +315,11 @@
             </summary>
         </member>
         <member name="P:VL.Common.ORM.Utilities.QueryOperators.IDbQueryOperator.DirectoryPath">
-            <summary>
-            日志输出文件夹
-            </summary>
+            TODO 其实ORM的Operator对日志记录的需求需要对外界的日志记录工具产生一个依赖
+            可以依赖于ServiceContext的某一个日志记录工具
+             <summary>
+             日志输出文件夹
+             </summary>
         </member>
         <member name="P:VL.Common.ORM.Utilities.QueryOperators.IDbQueryOperator.FilePath">
             <summary>
@@ -506,6 +524,13 @@
             获取参数名
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:VL.Common.ORM.Utilities.Interfaces.IParameterizable.AddParameter(VL.Common.DAS.Objects.DbSession,System.Data.Common.DbCommand)">
+            <summary>
+            基于(属性,值)添加参数
+            </summary>
+            <param name="session"></param>
+            <param name="command"></param>
         </member>
     </members>
 </doc>
