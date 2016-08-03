@@ -2329,3 +2329,920 @@
 --------------
 执行时间:2016/7/29 15:15:02
 执行语句:select * from TTask where DealStatus in (2,4)
+--------------
+执行时间:2016/8/2 8:58:14
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 8:58:14
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 8:58:14
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 8:58:14
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 8:58:16
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 8:58:16
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 8:58:16
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 8:58:16
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 8:58:18
+执行语句:select * from TTask where DealStatus in (2,4)
+--------------
+执行时间:2016/8/2 8:58:20
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 8:58:20
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 8:58:20
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 8:58:20
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 8:58:21
+执行语句:select EventId,TaskId,Topic,Version from TEvent where EventId = @EventId
+参数名:EventId=a42d92bd-812f-41f6-9102-1875dec96bab
+--------------
+执行时间:2016/8/2 8:58:21
+执行语句:select * from TTask where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 8:58:21
+执行语句:update TEvent set DealStatus=@DealStatus,Version=@NewVersion where EventId = @EventId and Version = @OldVersion
+参数名:EventId=a42d92bd-812f-41f6-9102-1875dec96bab
+参数名:OldVersion=26
+参数名:DealStatus=Unsettled
+参数名:NewVersion=27
+--------------
+执行时间:2016/8/2 8:58:21
+执行语句:select Count(*) from TEvent where TaskId = @TaskId and DealStatus != @DealStatus
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+参数名:DealStatus=Settled
+--------------
+执行时间:2016/8/2 8:58:21
+执行语句:update TTask set Version=@NewVersion,Tracing=@Tracing,DealStatus=@DealStatus where TaskId = @TaskId and Version = @OldVersion
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+参数名:OldVersion=38
+参数名:NewVersion=39
+参数名:Tracing=
+参数名:DealStatus=Processing
+--------------
+执行时间:2016/8/2 8:58:22
+执行语句:select * from TTask where DealStatus in (2,4)
+--------------
+执行时间:2016/8/2 8:58:22
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 8:58:26
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 8:58:26
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 8:58:26
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 8:58:26
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 8:58:26
+执行语句:select * from TTask where DealStatus in (2,4)
+--------------
+执行时间:2016/8/2 8:58:26
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 8:58:28
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 8:58:28
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 8:58:28
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 8:58:28
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 8:58:29
+执行语句:select * from TTask where DealStatus in (2,4)
+--------------
+执行时间:2016/8/2 8:58:29
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 9:11:51
+执行语句:select * from TTask where DealStatus in (2,4)
+--------------
+执行时间:2016/8/2 9:11:51
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 9:11:52
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 9:11:52
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 9:11:52
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 9:11:52
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 9:12:05
+执行语句:select * from TTask where DealStatus in (2,4)
+--------------
+执行时间:2016/8/2 9:12:05
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 9:12:08
+执行语句:select EventId,TaskId,Topic,Version from TEvent where EventId = @EventId
+参数名:EventId=a42d92bd-812f-41f6-9102-1875dec96bab
+--------------
+执行时间:2016/8/2 9:12:08
+执行语句:select * from TTask where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 9:12:08
+执行语句:update TEvent set DealStatus=@DealStatus,Version=@NewVersion where EventId = @EventId and Version = @OldVersion
+参数名:EventId=a42d92bd-812f-41f6-9102-1875dec96bab
+参数名:OldVersion=27
+参数名:DealStatus=Settled
+参数名:NewVersion=28
+--------------
+执行时间:2016/8/2 9:12:08
+执行语句:select Count(*) from TEvent where TaskId = @TaskId and DealStatus != @DealStatus
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+参数名:DealStatus=Settled
+--------------
+执行时间:2016/8/2 9:12:08
+执行语句:update TTask set Version=@NewVersion,Tracing=@Tracing,DealStatus=@DealStatus where TaskId = @TaskId and Version = @OldVersion
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+参数名:OldVersion=39
+参数名:NewVersion=40
+参数名:Tracing=
+参数名:DealStatus=Settled
+--------------
+执行时间:2016/8/2 9:12:10
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 9:12:10
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 9:12:10
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 9:12:10
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 13:12:01
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 13:12:01
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:12:01
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 13:12:01
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 13:12:08
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 13:12:08
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:12:08
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 13:12:08
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 13:12:11
+执行语句:select * from TTask where DealStatus in (2,4)
+--------------
+执行时间:2016/8/2 13:12:12
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 13:12:12
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:12:12
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 13:12:12
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 13:14:26
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 13:14:26
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:14:26
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 13:14:26
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 13:16:03
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 13:16:03
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:16:03
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 13:16:03
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 13:19:12
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 13:19:12
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:19:12
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 13:19:12
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 13:19:20
+执行语句:select * from TTask where DealStatus in (2,4)
+--------------
+执行时间:2016/8/2 13:19:21
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 13:19:21
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:19:21
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 13:19:21
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 13:19:30
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 13:19:30
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:19:30
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 13:19:30
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 13:19:42
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 13:19:42
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:19:42
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 13:19:42
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 13:20:50
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 13:20:50
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:20:50
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 13:20:50
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 13:21:31
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 13:21:31
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:21:31
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 13:21:31
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 13:21:45
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 13:21:45
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:21:45
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 13:21:45
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 13:21:59
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 13:21:59
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:21:59
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 13:21:59
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 13:22:17
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 13:22:17
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:22:17
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 13:22:17
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 13:23:00
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 13:23:01
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:23:01
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 13:23:01
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 13:27:43
+执行语句:select * from TTask where DealStatus in (2,4)
+--------------
+执行时间:2016/8/2 13:27:44
+执行语句:select * from TTask where DealStatus in (2,4)
+--------------
+执行时间:2016/8/2 13:27:45
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 13:27:45
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:27:45
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 13:27:45
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 13:30:16
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 13:30:16
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:30:16
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 13:30:16
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 13:30:22
+执行语句:select EventId,TaskId,Topic,Version from TEvent where EventId = @EventId
+参数名:EventId=a42d92bd-812f-41f6-9102-1875dec96bab
+--------------
+执行时间:2016/8/2 13:30:22
+执行语句:select * from TTask where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:30:22
+执行语句:update TEvent set DealStatus=@DealStatus,Version=@NewVersion where EventId = @EventId and Version = @OldVersion
+参数名:EventId=a42d92bd-812f-41f6-9102-1875dec96bab
+参数名:OldVersion=28
+参数名:DealStatus=Unsettled
+参数名:NewVersion=29
+--------------
+执行时间:2016/8/2 13:30:22
+执行语句:select Count(*) from TEvent where TaskId = @TaskId and DealStatus != @DealStatus
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+参数名:DealStatus=Settled
+--------------
+执行时间:2016/8/2 13:30:22
+执行语句:update TTask set Version=@NewVersion,Tracing=@Tracing,DealStatus=@DealStatus where TaskId = @TaskId and Version = @OldVersion
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+参数名:OldVersion=40
+参数名:NewVersion=41
+参数名:Tracing=
+参数名:DealStatus=Processing
+--------------
+执行时间:2016/8/2 13:30:24
+执行语句:select EventId,TaskId,Topic,Version from TEvent where EventId = @EventId
+参数名:EventId=a42d92bd-812f-41f6-9102-1875dec96bab
+--------------
+执行时间:2016/8/2 13:30:24
+执行语句:select * from TTask where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:30:24
+执行语句:update TEvent set DealStatus=@DealStatus,Version=@NewVersion where EventId = @EventId and Version = @OldVersion
+参数名:EventId=a42d92bd-812f-41f6-9102-1875dec96bab
+参数名:OldVersion=29
+参数名:DealStatus=Settled
+参数名:NewVersion=30
+--------------
+执行时间:2016/8/2 13:30:24
+执行语句:select Count(*) from TEvent where TaskId = @TaskId and DealStatus != @DealStatus
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+参数名:DealStatus=Settled
+--------------
+执行时间:2016/8/2 13:30:24
+执行语句:update TTask set Version=@NewVersion,Tracing=@Tracing,DealStatus=@DealStatus where TaskId = @TaskId and Version = @OldVersion
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+参数名:OldVersion=41
+参数名:NewVersion=42
+参数名:Tracing=
+参数名:DealStatus=Settled
+--------------
+执行时间:2016/8/2 13:30:25
+执行语句:select EventId,TaskId,Topic,Version from TEvent where EventId = @EventId
+参数名:EventId=79cb7029-dc2c-4c6b-95a0-99cab84783aa
+--------------
+执行时间:2016/8/2 13:30:25
+执行语句:select * from TTask where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:30:25
+执行语句:update TEvent set DealStatus=@DealStatus,Version=@NewVersion where EventId = @EventId and Version = @OldVersion
+参数名:EventId=79cb7029-dc2c-4c6b-95a0-99cab84783aa
+参数名:OldVersion=10
+参数名:DealStatus=Unsettled
+参数名:NewVersion=11
+--------------
+执行时间:2016/8/2 13:30:25
+执行语句:select Count(*) from TEvent where TaskId = @TaskId and DealStatus != @DealStatus
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+参数名:DealStatus=Settled
+--------------
+执行时间:2016/8/2 13:30:25
+执行语句:update TTask set Version=@NewVersion,Tracing=@Tracing,DealStatus=@DealStatus where TaskId = @TaskId and Version = @OldVersion
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+参数名:OldVersion=42
+参数名:NewVersion=43
+参数名:Tracing=
+参数名:DealStatus=Processing
+--------------
+执行时间:2016/8/2 13:30:25
+执行语句:select EventId,TaskId,Topic,Version from TEvent where EventId = @EventId
+参数名:EventId=79cb7029-dc2c-4c6b-95a0-99cab84783aa
+--------------
+执行时间:2016/8/2 13:30:25
+执行语句:select * from TTask where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:30:25
+执行语句:update TEvent set DealStatus=@DealStatus,Version=@NewVersion where EventId = @EventId and Version = @OldVersion
+参数名:EventId=79cb7029-dc2c-4c6b-95a0-99cab84783aa
+参数名:OldVersion=11
+参数名:DealStatus=Settled
+参数名:NewVersion=12
+--------------
+执行时间:2016/8/2 13:30:25
+执行语句:select Count(*) from TEvent where TaskId = @TaskId and DealStatus != @DealStatus
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+参数名:DealStatus=Settled
+--------------
+执行时间:2016/8/2 13:30:25
+执行语句:update TTask set Version=@NewVersion,Tracing=@Tracing,DealStatus=@DealStatus where TaskId = @TaskId and Version = @OldVersion
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+参数名:OldVersion=43
+参数名:NewVersion=44
+参数名:Tracing=
+参数名:DealStatus=Settled
+--------------
+执行时间:2016/8/2 13:34:35
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 13:34:35
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:34:35
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 13:34:35
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 13:34:49
+执行语句:select EventId,TaskId,Topic,Version from TEvent where EventId = @EventId
+参数名:EventId=a46e6aea-fd62-4a9f-b5c3-c4816816d674
+--------------
+执行时间:2016/8/2 13:34:49
+执行语句:select * from TTask where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 13:34:49
+执行语句:update TEvent set DealStatus=@DealStatus,Version=@NewVersion where EventId = @EventId and Version = @OldVersion
+参数名:EventId=a46e6aea-fd62-4a9f-b5c3-c4816816d674
+参数名:OldVersion=9
+参数名:DealStatus=Unsettled
+参数名:NewVersion=10
+--------------
+执行时间:2016/8/2 13:34:49
+执行语句:select Count(*) from TEvent where TaskId = @TaskId and DealStatus != @DealStatus
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+参数名:DealStatus=Settled
+--------------
+执行时间:2016/8/2 13:34:49
+执行语句:update TTask set Version=@NewVersion,Tracing=@Tracing,DealStatus=@DealStatus where TaskId = @TaskId and Version = @OldVersion
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+参数名:OldVersion=18
+参数名:NewVersion=19
+参数名:Tracing=
+参数名:DealStatus=Processing
+--------------
+执行时间:2016/8/2 13:34:50
+执行语句:select EventId,TaskId,Topic,Version from TEvent where EventId = @EventId
+参数名:EventId=a46e6aea-fd62-4a9f-b5c3-c4816816d674
+--------------
+执行时间:2016/8/2 13:34:50
+执行语句:select * from TTask where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 13:34:50
+执行语句:update TEvent set DealStatus=@DealStatus,Version=@NewVersion where EventId = @EventId and Version = @OldVersion
+参数名:EventId=a46e6aea-fd62-4a9f-b5c3-c4816816d674
+参数名:OldVersion=10
+参数名:DealStatus=Settled
+参数名:NewVersion=11
+--------------
+执行时间:2016/8/2 13:34:50
+执行语句:select Count(*) from TEvent where TaskId = @TaskId and DealStatus != @DealStatus
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+参数名:DealStatus=Settled
+--------------
+执行时间:2016/8/2 13:34:50
+执行语句:update TTask set Version=@NewVersion,Tracing=@Tracing,DealStatus=@DealStatus where TaskId = @TaskId and Version = @OldVersion
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+参数名:OldVersion=19
+参数名:NewVersion=20
+参数名:Tracing=
+参数名:DealStatus=Settled
+--------------
+执行时间:2016/8/2 13:34:54
+执行语句:select * from TTask where DealStatus in (2,4)
+--------------
+执行时间:2016/8/2 13:34:57
+执行语句:select EventId,TaskId,Topic,Version from TEvent where EventId = @EventId
+参数名:EventId=a42d92bd-812f-41f6-9102-1875dec96bab
+--------------
+执行时间:2016/8/2 13:34:57
+执行语句:select * from TTask where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:34:57
+执行语句:update TEvent set DealStatus=@DealStatus,Version=@NewVersion where EventId = @EventId and Version = @OldVersion
+参数名:EventId=a42d92bd-812f-41f6-9102-1875dec96bab
+参数名:OldVersion=30
+参数名:DealStatus=Unsettled
+参数名:NewVersion=31
+--------------
+执行时间:2016/8/2 13:34:57
+执行语句:select Count(*) from TEvent where TaskId = @TaskId and DealStatus != @DealStatus
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+参数名:DealStatus=Settled
+--------------
+执行时间:2016/8/2 13:34:57
+执行语句:update TTask set Version=@NewVersion,Tracing=@Tracing,DealStatus=@DealStatus where TaskId = @TaskId and Version = @OldVersion
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+参数名:OldVersion=44
+参数名:NewVersion=45
+参数名:Tracing=
+参数名:DealStatus=Processing
+--------------
+执行时间:2016/8/2 13:34:58
+执行语句:select * from TTask where DealStatus in (2,4)
+--------------
+执行时间:2016/8/2 13:34:58
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:58:55
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 13:58:55
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:58:55
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 13:58:55
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 13:58:57
+执行语句:select * from TTask where DealStatus in (2,4)
+--------------
+执行时间:2016/8/2 13:58:57
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:58:59
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 13:58:59
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:58:59
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 13:58:59
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 13:59:01
+执行语句:select * from TTask where DealStatus in (2,4)
+--------------
+执行时间:2016/8/2 13:59:01
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:59:02
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 13:59:02
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:59:02
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 13:59:02
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 13:59:07
+执行语句:select EventId,TaskId,Topic,Version from TEvent where EventId = @EventId
+参数名:EventId=a42d92bd-812f-41f6-9102-1875dec96bab
+--------------
+执行时间:2016/8/2 13:59:07
+执行语句:select * from TTask where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:59:07
+执行语句:update TEvent set DealStatus=@DealStatus,Version=@NewVersion where EventId = @EventId and Version = @OldVersion
+参数名:EventId=a42d92bd-812f-41f6-9102-1875dec96bab
+参数名:OldVersion=31
+参数名:DealStatus=Settled
+参数名:NewVersion=32
+--------------
+执行时间:2016/8/2 13:59:07
+执行语句:select Count(*) from TEvent where TaskId = @TaskId and DealStatus != @DealStatus
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+参数名:DealStatus=Settled
+--------------
+执行时间:2016/8/2 13:59:07
+执行语句:update TTask set Version=@NewVersion,Tracing=@Tracing,DealStatus=@DealStatus where TaskId = @TaskId and Version = @OldVersion
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+参数名:OldVersion=45
+参数名:NewVersion=46
+参数名:Tracing=
+参数名:DealStatus=Settled
+--------------
+执行时间:2016/8/2 13:59:20
+执行语句:select * from TTask where DealStatus in (2,4)
+--------------
+执行时间:2016/8/2 13:59:21
+执行语句:select * from TTask where DealStatus in (2,4)
+--------------
+执行时间:2016/8/2 13:59:23
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 13:59:23
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 13:59:23
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 13:59:23
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 14:53:21
+执行语句:select * from TTask where DealStatus in (2,4)
+--------------
+执行时间:2016/8/2 14:53:22
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 14:53:22
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 14:53:22
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 14:53:22
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 15:30:38
+执行语句:select * from TTask where DealStatus in (2,4)
+--------------
+执行时间:2016/8/2 15:30:39
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 15:30:39
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 15:30:39
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 15:30:39
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 15:30:40
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 15:30:40
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 15:30:40
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 15:30:40
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 16:13:19
+执行语句:select TaskId,Topic,Tracing,DealStatus,Version from TTask
+--------------
+执行时间:2016/8/2 16:13:19
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=f87e6c62-c65a-4818-bfc0-4e6e73eea97b
+--------------
+执行时间:2016/8/2 16:13:19
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=d3c49b2d-0e45-44f7-a068-67c49a33e165
+--------------
+执行时间:2016/8/2 16:13:19
+执行语句:select * from TEvent where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 16:13:26
+执行语句:select EventId,TaskId,Topic,Version from TEvent where EventId = @EventId
+参数名:EventId=a6d9d0ba-c5be-4f38-a111-a9c93e339dbf
+--------------
+执行时间:2016/8/2 16:13:26
+执行语句:select * from TTask where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 16:13:26
+执行语句:update TEvent set DealStatus=@DealStatus,Version=@NewVersion where EventId = @EventId and Version = @OldVersion
+参数名:EventId=a6d9d0ba-c5be-4f38-a111-a9c93e339dbf
+参数名:OldVersion=8
+参数名:DealStatus=Unsettled
+参数名:NewVersion=9
+--------------
+执行时间:2016/8/2 16:13:26
+执行语句:select Count(*) from TEvent where TaskId = @TaskId and DealStatus != @DealStatus
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+参数名:DealStatus=Settled
+--------------
+执行时间:2016/8/2 16:13:26
+执行语句:update TTask set Version=@NewVersion,Tracing=@Tracing,DealStatus=@DealStatus where TaskId = @TaskId and Version = @OldVersion
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+参数名:OldVersion=14
+参数名:NewVersion=15
+参数名:Tracing=
+参数名:DealStatus=Processing
+--------------
+执行时间:2016/8/2 16:13:27
+执行语句:select EventId,TaskId,Topic,Version from TEvent where EventId = @EventId
+参数名:EventId=a6d9d0ba-c5be-4f38-a111-a9c93e339dbf
+--------------
+执行时间:2016/8/2 16:13:27
+执行语句:select * from TTask where TaskId = @TaskId
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+--------------
+执行时间:2016/8/2 16:13:27
+执行语句:update TEvent set DealStatus=@DealStatus,Version=@NewVersion where EventId = @EventId and Version = @OldVersion
+参数名:EventId=a6d9d0ba-c5be-4f38-a111-a9c93e339dbf
+参数名:OldVersion=9
+参数名:DealStatus=Settled
+参数名:NewVersion=10
+--------------
+执行时间:2016/8/2 16:13:27
+执行语句:select Count(*) from TEvent where TaskId = @TaskId and DealStatus != @DealStatus
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+参数名:DealStatus=Settled
+--------------
+执行时间:2016/8/2 16:13:27
+执行语句:update TTask set Version=@NewVersion,Tracing=@Tracing,DealStatus=@DealStatus where TaskId = @TaskId and Version = @OldVersion
+参数名:TaskId=98b8b005-f846-4a9e-b9c5-74a6dd12deb9
+参数名:OldVersion=15
+参数名:NewVersion=16
+参数名:Tracing=
+参数名:DealStatus=Settled

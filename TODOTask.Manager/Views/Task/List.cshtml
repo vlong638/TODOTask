@@ -3,7 +3,62 @@
     ViewBag.Title = "List";
     Layout = "~/Views/Task/_TaskLayout.cshtml";
 }
-<ul>
+<div id="accordion">
+    @foreach (var task in Model)
+    {
+        <h3>@task.Topic</h3>
+        <div>
+            <p>
+                @Html.HiddenFor(c => task.TaskId)
+                @Html.HiddenFor(c => task.DealStatus)
+                @foreach (var subevent in task.Events)
+                {
+                    <ul>
+                        <li>
+                            @Html.CheckBox("EventChecked", subevent.DealStatus == TODOTask.Objects.Enums.EEventDealStatus.Settled, new { @class = "EventChecked" })
+                            @Html.TextBox("EventStatus", subevent.DealStatus.ToString())
+                            @Html.HiddenFor(c => subevent.EventId)
+                            @Html.DisplayFor(c => subevent.Topic)
+                        </li>
+                    </ul>
+                }
+            </p>
+        </div>
+    }
+</div>
+
+@Session scripts{
+<script>
+    $(document).ready(function () {
+      $("#accordion").accordion({
+          collapsible: true
+      });
+      $(".EventChecked").click(function () {
+          var parent = $(this).parent();
+          var eventId = parent.find("#subevent_EventId").val();
+          var eventStatus = parent.find("#EventStatus").val();
+          $.ajax({
+              type: 'POST',
+              url: "/Task/SettleEvent",
+              data: "eventId=" + eventId + "&eventStatus=" + eventStatus,
+              success: function (msg) {
+                  var values = msg.split(",");
+                  parent.find("#EventStatus").val(values[0]);
+                  //主任务状态发生了变更
+                  //if (eventStatus != msg) {
+                  //    parent.parent().parent().parent().find("#TaskStatus").val(values[1])
+                  //}
+              },
+              error: function (msg) {
+                  alert("处理过程出现异常,请刷新页面后重试");
+              },
+          })
+      });
+  });
+</script>
+}
+
+@*<ul>
     @foreach (var task in Model)
     {
         <li>
@@ -73,7 +128,4 @@
             })
         });
     });
-</script>
-@*<script src="~/Scripts/TaskList.js"></script>*@
-@*<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
-}
+</script>*@
