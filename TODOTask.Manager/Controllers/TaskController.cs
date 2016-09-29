@@ -97,17 +97,10 @@ namespace TODOTask.Manager.Controllers
               {
                   return User.SettleEvent(session, eventId, eventStatus == EEventDealStatus.Settled ? EEventDealStatus.Unsettled : EEventDealStatus.Settled);
               });
-            return ((eventStatus == EEventDealStatus.Settled && result.Data1 == Objects.SubResults.SettleEventResult.Success) ? EEventDealStatus.Unsettled.ToString() : EEventDealStatus.Settled.ToString())
+            return ((eventStatus == EEventDealStatus.Settled && result.Data1 == Objects.SubResults.SettleEventResult.Success) ? EEventDealStatus.Unsettled.ToString()+",-1" : EEventDealStatus.Settled.ToString() + ",1")
                 + "," + result.Data2;
         }
         #endregion
-
-
-        // GET: Task/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
         // GET: Task/Create
         public ActionResult Create()
@@ -130,6 +123,15 @@ namespace TODOTask.Manager.Controllers
                 return View();
             }
         }
+
+
+
+        // GET: Task/Details/5
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
+
 
         // GET: Task/Edit/5
         public ActionResult Edit(int id)

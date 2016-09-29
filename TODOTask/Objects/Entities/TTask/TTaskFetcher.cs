@@ -9,6 +9,10 @@ namespace TODOTask.Objects.Entities
     public static partial class EntityFetcher
     {
         #region Methods
+        /// <summary>
+        /// return false if fetch.Count()==0
+        /// return true if fetch.Count()>0
+        /// </summary>
         public static bool FetchEvents(this TTask tTask, DbSession session)
         {
             var query = IORMProvider.GetDbQueryBuilder(session);

@@ -23,12 +23,14 @@ namespace TODOTask.Objects.Entities
         /// <param name="participant"></param>
         /// <param name="topic"></param>
         /// <returns></returns>
-        public CreateEventResult BLCreate(DbSession session, Guid taskId, string participant, string topic)
+        public CreateEventResult BLCreate(DbSession session, Guid taskId, string participant, string topic,DateTime startTime, DateTime endTime)
         {
             //动态参数
             TaskId = taskId;
             Participant = participant;
             Topic = topic;
+            WhenToStart = startTime;
+            WhenToEnd = endTime;
             //内置参数
             EventId = Guid.NewGuid();
             Version = 1;
@@ -104,15 +106,25 @@ namespace TODOTask.Objects.Entities
         /// <returns></returns>
         public SettleEventResult BLSettle(DbSession session, EEventDealStatus dealStatus)
         {
-            //状态检测
-            if (DealStatus==EEventDealStatus.Settled)
-            {
-                return SettleEventResult.AllreadySettled;
-            }
             //必要参数
             this.DbLoad(session, TEventProperties.TaskId, TEventProperties.Topic, TEventProperties.Version);
+            ////状态检测 必要参数需要补充DealStatus
+            //if (DealStatus==EEventDealStatus.Settled)
+            //{
+            //    return SettleEventResult.AllreadySettled;
+            //}
             //动态参数
             this.DealStatus = dealStatus;
+            if (dealStatus==EEventDealStatus.Settled)
+            {
+                this.WhenStart = DateTime.Now;
+                this.WhenEnd = DateTime.Now;
+            }
+            else
+            {
+                this.WhenStart = DateTime.MaxValue;//永远没有开始
+                this.WhenEnd = DateTime.MaxValue;//永远没有结束
+            }
             //任务级联影响
             if (!this.FetchTTask(session))
             {

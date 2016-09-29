@@ -1,0 +1,59 @@
+﻿@model List<TODOTask.Objects.Entities.TTask>
+@{
+    ViewBag.Title = "TODOList";
+    Layout = "~/Views/Task/_TaskLayout.cshtml";
+}
+<ul>
+    @foreach (var task in Model)
+    {
+        <li>
+            @Html.HiddenFor(c => task.TaskId)
+            <div>
+                @Html.CheckBox("TaskChecked", task.DealStatus == TODOTask.Objects.Enums.ETaskDealStatus.Settled)
+                @Html.TextBox("TaskStatus", task.DealStatus.ToString())
+                标题:@Html.DisplayFor(c => task.Topic)
+            </div>
+            @foreach (var subevent in task.Events)
+            {
+                <ul>
+                    <li>
+                        <div>
+                            @Html.CheckBox("EventChecked", subevent.DealStatus == TODOTask.Objects.Enums.EEventDealStatus.Settled, new { @class = "EventChecked" })
+                            @Html.TextBox("EventStatus", subevent.DealStatus.ToString())
+                            @Html.HiddenFor(c => subevent.EventId)
+                            @Html.DisplayFor(c => subevent.Topic)
+                        </div>
+                    </li>
+                </ul>
+            }
+        </li>
+    }
+</ul>
+
+@Session scripts{
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".EventChecked").click(function () {
+            var parent = $(this).parent();
+            var eventId = parent.find("#subevent_EventId").val();
+            var eventStatus = parent.find("#EventStatus").val();
+            $.ajax({
+                type: 'POST',
+                url: "/Task/SettleEvent",
+                data: "eventId=" + eventId + "&eventStatus=" + eventStatus,
+                success: function (msg) {
+                    var values = msg.split(",");
+                    parent.find("#EventStatus").val(values[0]);
+                    if (eventStatus!=msg) {
+                        parent.parent().parent().parent().find("#TaskStatus").val(values[1])
+                    }
+                },
+                error: function (msg) {
+                    alert("处理过程出现异常,请刷新页面后重试");
+                },
+            })
+        });
+    });
+</script>
+}

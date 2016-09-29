@@ -9,6 +9,19 @@ using VL.Common.Protocol.IService;
 
 namespace TODOTask.Runner
 {
+    class RandomRoller
+    {
+        /// <summary>
+        /// 取得未来的一个时间
+        /// </summary>
+        /// <param name="startMinite">固定延迟时间</param>
+        /// <param name="rangeMinute">随机延迟时间</param>
+        /// <returns></returns>
+        public static DateTime GetRandomTimeOfFuture(int startMinite,int rangeMinute)
+        {
+            return DateTime.Now.AddMinutes(startMinite).AddMinutes(new Random().Next(rangeMinute));
+        }
+    }
     class Program
     {
         static ServiceContextOfTODOTask ServiceContext { set; get; }
@@ -48,39 +61,39 @@ namespace TODOTask.Runner
 
                 User user = new User() { Name = "vlong638" };
 
-                #region 业务逻辑(带状态校验)
-                if (false)
-                {
-                    user.CreateTask(session, "1.玩法开奖");
-                    var tasks = user.GetAllTasks(session);
-                    foreach (var task in tasks.Data)
-                    {
-                        user.CreateEvent(session, task.TaskId, "1.1.彩果和中奖信息录入");
-                        user.CreateEvent(session, task.TaskId, "1.2.走势确认");
-                        var events = user.GetAllEvents(session);
-                        foreach (var @event in events.Data)
-                        {
-                            user.SettleEvent(session, @event.EventId, EEventDealStatus.Settled);
-                        }
-                        foreach (var @event in events.Data)
-                        {
-                            user.DeleteEvent(session, @event.EventId);
-                        }
-                        user.CreateEvent(session, task.TaskId, "1.1.彩果和中奖信息录入");
-                        user.CreateEvent(session, task.TaskId, "1.2.走势确认");
-                        user.StartTask(session, task.TaskId);
-                        events = user.GetAllEvents(session);
-                        foreach (var @event in events.Data)
-                        {
-                            user.SettleEvent(session, @event.EventId, EEventDealStatus.Settled);
-                        }
-                        foreach (var @event in events.Data)
-                        {
-                            user.DeleteEvent(session, @event.EventId);
-                        }
-                    } 
-                }
-                #endregion
+                //#region 业务逻辑(带状态校验)
+                //if (false)
+                //{
+                //    user.CreateTask(session, "1.玩法开奖");
+                //    var tasks = user.GetAllTasks(session);
+                //    foreach (var task in tasks.Data)
+                //    {
+                //        user.CreateEvent(session, task.TaskId, "1.1.彩果和中奖信息录入");
+                //        user.CreateEvent(session, task.TaskId, "1.2.走势确认");
+                //        var events = user.GetAllEvents(session);
+                //        foreach (var @event in events.Data)
+                //        {
+                //            user.SettleEvent(session, @event.EventId, EEventDealStatus.Settled);
+                //        }
+                //        foreach (var @event in events.Data)
+                //        {
+                //            user.DeleteEvent(session, @event.EventId);
+                //        }
+                //        user.CreateEvent(session, task.TaskId, "1.1.彩果和中奖信息录入");
+                //        user.CreateEvent(session, task.TaskId, "1.2.走势确认");
+                //        user.StartTask(session, task.TaskId);
+                //        events = user.GetAllEvents(session);
+                //        foreach (var @event in events.Data)
+                //        {
+                //            user.SettleEvent(session, @event.EventId, EEventDealStatus.Settled);
+                //        }
+                //        foreach (var @event in events.Data)
+                //        {
+                //            user.DeleteEvent(session, @event.EventId);
+                //        }
+                //    } 
+                //}
+                //#endregion
 
                 #region 业务逻辑(规范流程)
                 if (true)
@@ -91,8 +104,8 @@ namespace TODOTask.Runner
                     var tasks = user.GetAllTasks(session);
                     foreach (var task in tasks.Data)
                     {
-                        user.CreateEvent(session, task.TaskId, "1.1.彩果和中奖信息录入");
-                        user.CreateEvent(session, task.TaskId, "1.2.走势确认");
+                        user.CreateEvent(session, task.TaskId, "1.1.彩果和中奖信息录入", RandomRoller.GetRandomTimeOfFuture(0,100), RandomRoller.GetRandomTimeOfFuture(100,1000));
+                        user.CreateEvent(session, task.TaskId, "1.2.走势确认", RandomRoller.GetRandomTimeOfFuture(0, 100), RandomRoller.GetRandomTimeOfFuture(100, 1000));
                         user.StartTask(session, task.TaskId);
                         var events = user.GetAllEvents(session);
                         foreach (var @event in events.Data)

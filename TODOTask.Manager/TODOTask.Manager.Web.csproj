@@ -331,6 +331,7 @@
     <Content Include="Views\Task\List.cshtml" />
     <Content Include="Views\Task\_TaskLayout.cshtml" />
     <Content Include="Views\Task\TODOList.cshtml" />
+    <Content Include="Views\Task\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -52,11 +52,13 @@ namespace TODOTask.Objects.DomainFacades
             result.Data = new TTask().GetAllTODOTasks(session);
             foreach (var task in result.Data)
             {
-                if (!task.FetchEvents(session))
-                {
-                    result.ResultCode = EResultCode.Failure;
-                    break;
-                }
+                task.FetchEvents(session);
+                //由于是0...*关联 补充信息将返回是否
+                //if (!task.FetchEvents(session))
+                //{
+                //    result.ResultCode = EResultCode.Failure;
+                //    break;
+                //}
             }
             return result;
         }
@@ -70,11 +72,12 @@ namespace TODOTask.Objects.DomainFacades
             result.Data = new TTask().GetAllTasks(session);
             foreach (var task in result.Data)
             {
-                if (!task.FetchEvents(session))
-                {
-                    result.ResultCode = EResultCode.Failure;
-                    break;
-                }
+                task.FetchEvents(session);
+                //if (!task.FetchEvents(session))
+                //{
+                //    result.ResultCode = EResultCode.Failure;
+                //    break;
+                //}
             }
             return result;
         }

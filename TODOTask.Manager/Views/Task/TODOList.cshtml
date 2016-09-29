@@ -3,50 +3,82 @@
     ViewBag.Title = "TODOList";
     Layout = "~/Views/Task/_TaskLayout.cshtml";
 }
-<ul>
+<div id="accordion">
     @foreach (var task in Model)
     {
-        <li>
-            @Html.HiddenFor(c => task.TaskId)
-            <div>
-                @Html.CheckBox("TaskChecked", task.DealStatus == TODOTask.Objects.Enums.ETaskDealStatus.Settled)
-                @Html.TextBox("TaskStatus", task.DealStatus.ToString())
-                标题:@Html.DisplayFor(c => task.Topic)
-            </div>
-            @foreach (var subevent in task.Events)
-            {
+        <h3 style="display:flex" id="@task.TaskId">
+            <div>@Html.TextBox("TaskStatus", task.DealStatus.ToString())</div>
+            (完成情况:<div id="SettledEventCount">@task.SettledEventCount</div>/<div>@task.EventCount</div>)
+            <div>@task.Topic</div>
+            @{
+                string LatestTimeStatusTag;
+                switch (task.LatestTimeStatus)
+                {
+                    case TODOTask.Objects.Entities.LatestTimeStatus.OverTime:
+                        LatestTimeStatusTag = "红";
+                        break;
+                    case TODOTask.Objects.Entities.LatestTimeStatus.Started:
+                        LatestTimeStatusTag = "黄";
+                        break;
+                    case TODOTask.Objects.Entities.LatestTimeStatus.Unstarted:
+                        LatestTimeStatusTag = "绿";
+                        break;
+                    default:
+                        LatestTimeStatusTag = "灰";
+                        break;
+                }
+            }
+            (<div>@LatestTimeStatusTag</div>
+            <div>@task.LatestTimeOfWork</div>)
+        </h3>
+        <div>
+            <p>
+                @Html.HiddenFor(c => task.TaskId)
+                @Html.HiddenFor(c => task.DealStatus)
                 <ul>
-                    <li>
-                        <div>
+                    @foreach (var subevent in task.Events)
+                    {
+                        <li>
                             @Html.CheckBox("EventChecked", subevent.DealStatus == TODOTask.Objects.Enums.EEventDealStatus.Settled, new { @class = "EventChecked" })
                             @Html.TextBox("EventStatus", subevent.DealStatus.ToString())
                             @Html.HiddenFor(c => subevent.EventId)
                             @Html.DisplayFor(c => subevent.Topic)
-                        </div>
-                    </li>
+                            (开始时间:@subevent.WhenToStart)
+                            (截止时间:@subevent.WhenToEnd)
+                        </li>
+                    }
                 </ul>
-            }
-        </li>
+            </p>
+        </div>
     }
-</ul>
+</div>
 
 @Session scripts{
-<script src="~/Scripts/jquery-1.10.2.js"></script>
-<script type="text/javascript">
+<script>
     $(document).ready(function () {
+        $("#accordion").accordion({
+            collapsible: true
+        });
         $(".EventChecked").click(function () {
             var parent = $(this).parent();
             var eventId = parent.find("#subevent_EventId").val();
             var eventStatus = parent.find("#EventStatus").val();
+            var taskId = parent.parent().parent().find("#task_TaskId").val();
+            var h3 = $("#" + taskId);
             $.ajax({
                 type: 'POST',
                 url: "/Task/SettleEvent",
                 data: "eventId=" + eventId + "&eventStatus=" + eventStatus,
                 success: function (msg) {
+                    //事件状态
                     var values = msg.split(",");
                     parent.find("#EventStatus").val(values[0]);
-                    if (eventStatus!=msg) {
-                        parent.parent().parent().parent().find("#TaskStatus").val(values[1])
+                    //任务的完成情况
+                    var settledEventCount = h3.find("#SettledEventCount");
+                    settledEventCount.text(Number(settledEventCount.text()) + Number(values[1]));
+                    //任务状态
+                    if (eventStatus != msg) {
+                        h3.find("#TaskStatus").val(values[2])
                     }
                 },
                 error: function (msg) {

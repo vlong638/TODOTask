@@ -6,22 +6,24 @@
 <div id="accordion">
     @foreach (var task in Model)
     {
-        <h3>@task.Topic</h3>
+        <h3 style="display:flex"><div>@task.Topic</div><div>23423</div></h3>
         <div>
             <p>
                 @Html.HiddenFor(c => task.TaskId)
                 @Html.HiddenFor(c => task.DealStatus)
-                @foreach (var subevent in task.Events)
-                {
-                    <ul>
+                <ul>
+                    @foreach (var subevent in task.Events)
+                    {
                         <li>
                             @Html.CheckBox("EventChecked", subevent.DealStatus == TODOTask.Objects.Enums.EEventDealStatus.Settled, new { @class = "EventChecked" })
                             @Html.TextBox("EventStatus", subevent.DealStatus.ToString())
                             @Html.HiddenFor(c => subevent.EventId)
                             @Html.DisplayFor(c => subevent.Topic)
+                            @Html.DisplayFor(c => subevent.WhenToStart)
+                            @Html.DisplayFor(c => subevent.WhenToEnd)
                         </li>
-                    </ul>
-                }
+                    }
+                </ul>
             </p>
         </div>
     }
@@ -30,65 +32,9 @@
 @Session scripts{
 <script>
     $(document).ready(function () {
-      $("#accordion").accordion({
-          collapsible: true
-      });
-      $(".EventChecked").click(function () {
-          var parent = $(this).parent();
-          var eventId = parent.find("#subevent_EventId").val();
-          var eventStatus = parent.find("#EventStatus").val();
-          $.ajax({
-              type: 'POST',
-              url: "/Task/SettleEvent",
-              data: "eventId=" + eventId + "&eventStatus=" + eventStatus,
-              success: function (msg) {
-                  var values = msg.split(",");
-                  parent.find("#EventStatus").val(values[0]);
-                  //主任务状态发生了变更
-                  //if (eventStatus != msg) {
-                  //    parent.parent().parent().parent().find("#TaskStatus").val(values[1])
-                  //}
-              },
-              error: function (msg) {
-                  alert("处理过程出现异常,请刷新页面后重试");
-              },
-          })
-      });
-  });
-</script>
-}
-
-@*<ul>
-    @foreach (var task in Model)
-    {
-        <li>
-            <div>
-                @Html.CheckBox("TaskChecked", task.DealStatus == TODOTask.Objects.Enums.ETaskDealStatus.Settled, new { @class = "TaskChecked" })
-                @Html.TextBox("TaskStatus", task.DealStatus.ToString())
-                @Html.HiddenFor(c => task.TaskId)
-                标题:@Html.DisplayFor(c => task.Topic)
-            </div>
-            @foreach (var subevent in task.Events)
-            {
-                <ul>
-                    <li>
-                        <div>
-                            @Html.CheckBox("EventChecked", subevent.DealStatus == TODOTask.Objects.Enums.EEventDealStatus.Settled, new { @class = "EventChecked" })
-                            @Html.TextBox("EventStatus", subevent.DealStatus.ToString())
-                            @Html.HiddenFor(c => subevent.EventId)
-                            @Html.DisplayFor(c => subevent.Topic)
-                        </div>
-                    </li>
-                </ul>
-            }
-        </li>
-    }
-</ul>
-
-@Session scripts{
-<script src="~/Scripts/jquery-1.10.2.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
+        $("#accordion").accordion({
+            collapsible: true
+        });
         $(".EventChecked").click(function () {
             var parent = $(this).parent();
             var eventId = parent.find("#subevent_EventId").val();
@@ -100,9 +46,10 @@
                 success: function (msg) {
                     var values = msg.split(",");
                     parent.find("#EventStatus").val(values[0]);
-                    if (eventStatus != msg) {
-                        parent.parent().parent().parent().find("#TaskStatus").val(values[1])
-                    }
+                    //主任务状态发生了变更
+                    //if (eventStatus != msg) {
+                    //    parent.parent().parent().parent().find("#TaskStatus").val(values[1])
+                    //}
                 },
                 error: function (msg) {
                     alert("处理过程出现异常,请刷新页面后重试");
@@ -110,22 +57,77 @@
             })
         });
     });
-    $(document).ready(function () {
-        $(".TaskChecked").click(function () {
-            var parent = $(this).parent();
-            var taskId = parent.find("#task_TaskId").val();
-            var taskStatus = parent.find("#TaskStatus").val();
-            $.ajax({
-                type: 'POST',
-                url: "/Task/SettleTask",
-                data: "taskId=" + taskId + "&taskStatus=" + taskStatus,
-                success: function (msg) {
-                    alert(msg);
-                },
-                error: function (msg) {
-                    alert("处理过程出现异常,请刷新页面后重试");
-                },
-            })
+</script>
+}
+
+@*<ul>
+        @foreach (var task in Model)
+        {
+            <li>
+                <div>
+                    @Html.CheckBox("TaskChecked", task.DealStatus == TODOTask.Objects.Enums.ETaskDealStatus.Settled, new { @class = "TaskChecked" })
+                    @Html.TextBox("TaskStatus", task.DealStatus.ToString())
+                    @Html.HiddenFor(c => task.TaskId)
+                    标题:@Html.DisplayFor(c => task.Topic)
+                </div>
+                @foreach (var subevent in task.Events)
+                {
+                    <ul>
+                        <li>
+                            <div>
+                                @Html.CheckBox("EventChecked", subevent.DealStatus == TODOTask.Objects.Enums.EEventDealStatus.Settled, new { @class = "EventChecked" })
+                                @Html.TextBox("EventStatus", subevent.DealStatus.ToString())
+                                @Html.HiddenFor(c => subevent.EventId)
+                                @Html.DisplayFor(c => subevent.Topic)
+                            </div>
+                        </li>
+                    </ul>
+                }
+            </li>
+        }
+    </ul>
+
+    @Session scripts{
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".EventChecked").click(function () {
+                var parent = $(this).parent();
+                var eventId = parent.find("#subevent_EventId").val();
+                var eventStatus = parent.find("#EventStatus").val();
+                $.ajax({
+                    type: 'POST',
+                    url: "/Task/SettleEvent",
+                    data: "eventId=" + eventId + "&eventStatus=" + eventStatus,
+                    success: function (msg) {
+                        var values = msg.split(",");
+                        parent.find("#EventStatus").val(values[0]);
+                        if (eventStatus != msg) {
+                            parent.parent().parent().parent().find("#TaskStatus").val(values[1])
+                        }
+                    },
+                    error: function (msg) {
+                        alert("处理过程出现异常,请刷新页面后重试");
+                    },
+                })
+            });
         });
-    });
-</script>*@
+        $(document).ready(function () {
+            $(".TaskChecked").click(function () {
+                var parent = $(this).parent();
+                var taskId = parent.find("#task_TaskId").val();
+                var taskStatus = parent.find("#TaskStatus").val();
+                $.ajax({
+                    type: 'POST',
+                    url: "/Task/SettleTask",
+                    data: "taskId=" + taskId + "&taskStatus=" + taskStatus,
+                    success: function (msg) {
+                        alert(msg);
+                    },
+                    error: function (msg) {
+                        alert("处理过程出现异常,请刷新页面后重试");
+                    },
+                })
+            });
+        });
+    </script>*@

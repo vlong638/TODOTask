@@ -63,10 +63,10 @@ namespace TODOTask.Objects.DomainFacades
         /// <summary>
         /// 创建事项
         /// </summary>
-        public Result<CreateEventResult> CreateEvent(DbSession session, Guid taskId, string topic)
+        public Result<CreateEventResult> CreateEvent(DbSession session, Guid taskId, string topic, DateTime startTime, DateTime endTime)
         {
             Result<CreateEventResult> result = new Result<CreateEventResult>(nameof(CreateEvent));
-            result.Data = new TEvent().BLCreate(session, taskId, Name, topic);
+            result.Data = new TEvent().BLCreate(session, taskId, Name, topic, startTime, endTime);
             result.ResultCode = result.Data == CreateEventResult.Success ? EResultCode.Success : EResultCode.Failure;
             return result;
         }

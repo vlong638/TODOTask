@@ -13,8 +13,70 @@ using static TODOTask.Objects.Utilities.HelperOfTask;
 
 namespace TODOTask.Objects.Entities
 {
+    public enum LatestTimeStatus
+    {
+        None,
+        OverTime,
+        Started,
+        Unstarted,
+    }
+
     public partial class TTask
     {
+        public int EventCount { get { return Events.Count(); } }
+        public int SettledEventCount { get { return Events.Where(c=>c.DealStatus==EEventDealStatus.Settled).Count(); } }
+
+
+        public string LatestTimeOfWork
+        {
+            get
+            {
+                if (latestTimeOfWork==null)
+                {
+                    InitLatestWork();
+                }
+                return latestTimeOfWork;
+            }
+        }
+
+        public LatestTimeStatus LatestTimeStatus
+        {
+            get
+            {
+                if (latestTimeStatus == LatestTimeStatus.None)
+                {
+                    InitLatestWork();
+                }
+                return latestTimeStatus;
+            }
+        }
+        private string latestTimeOfWork;
+        private LatestTimeStatus latestTimeStatus;
+        private void InitLatestWork()
+        {
+            //存在已超期的 显示超期最久的
+            var overEndEvent = Events.FirstOrDefault(c => c.DealStatus != EEventDealStatus.Settled && c.WhenToEnd <= DateTime.Now);
+            if (overEndEvent != null)
+            {
+                latestTimeStatus = LatestTimeStatus.OverTime;
+                latestTimeOfWork = Events.OrderBy(c => c.WhenToEnd).First(c => c.DealStatus != EEventDealStatus.Settled && c.WhenToEnd <= DateTime.Now).WhenToEnd.ToString();
+                return;
+            }
+            //不存在超期的但存在已开始的,显示开始时间最久的
+            var overStartEvent = Events.FirstOrDefault(c => c.DealStatus != EEventDealStatus.Settled && c.WhenToStart <= DateTime.Now);
+            if (overStartEvent != null)
+            {
+                latestTimeStatus = LatestTimeStatus.Started;
+                latestTimeOfWork = Events.OrderBy(c => c.WhenToStart).First(c => c.DealStatus != EEventDealStatus.Settled && c.WhenToStart <= DateTime.Now).WhenToStart.ToString();
+                return;
+            }
+            //都未开始,则显示开始时间最早的
+            latestTimeStatus = LatestTimeStatus.Unstarted;
+            latestTimeOfWork = Events.OrderBy(c => c.WhenToStart).First().WhenToStart.ToString();
+        }
+
+
+
         #region Entity Subject Function
         /// <summary>
         /// 创建任务
